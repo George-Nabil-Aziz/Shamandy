@@ -1,6 +1,9 @@
 import { Button, Datepicker, Dropdown } from "flowbite-react";
+import { useScreenSize } from "/src";
 
-function App() {
+export default function App() {
+  const screen = useScreenSize();
+
   return (
     <div>
       <Datepicker />
@@ -17,5 +20,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
