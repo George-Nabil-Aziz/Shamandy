@@ -1,6 +1,12 @@
 // Components
+import { Outlet } from "react-router-dom";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
+
+// React Icons
+import { HiHome } from "react-icons/hi";
+import { GiTurtle } from "react-icons/gi";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 export const routes = [
   {
@@ -8,7 +14,8 @@ export const routes = [
     element: <MainLayout />,
     loader() {
       return {
-        label: "Outer",
+        bcLabel: "MainLayout",
+        bcIcon: HiHome,
       };
     },
     children: [
@@ -17,18 +24,37 @@ export const routes = [
         element: <MainPage />,
         loader() {
           return {
-            label: "Main Home",
+            bcLabel: "MainPage",
+            bcIcon: GiTurtle,
           };
         },
       },
       {
         path: "hello",
-        element: <div>Hello</div>,
+        element: (
+          <div>
+            Hello
+            <Outlet />
+          </div>
+        ),
         loader() {
           return {
-            label: "Helloooo",
+            bcLabel: "Helloooo",
+            bcIcon: GiTurtle,
           };
         },
+        children: [
+          {
+            path: "beeb",
+            element: <div>Beeb</div>,
+            loader() {
+              return {
+                bcLabel: "Beeb",
+                bcIcon: CiDeliveryTruck,
+              };
+            },
+          },
+        ],
       },
     ],
   },

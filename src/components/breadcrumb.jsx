@@ -1,20 +1,22 @@
 // Hooks
-import { useBreadcrumb } from "../hooks";
+import { useBreadcrumb } from "/src";
 
 // Flowbite
 import { Breadcrumb } from "flowbite-react";
 
-// React Icons
-import { HiHome } from "react-icons/hi";
-
 export const AppBreadcrumb = () => {
-  const { routes } = useBreadcrumb();
+  const { routes, handleRouteClick } = useBreadcrumb();
 
   return (
     <Breadcrumb aria-label="Default breadcrumb example">
-      {routes.map((route, index) => (
-        <Breadcrumb.Item href="#" icon={index === 0 && HiHome} key={route.id}>
-          {route.data.label}
+      {routes.map((route) => (
+        <Breadcrumb.Item
+          href="#"
+          key={route.id}
+          icon={route.data.bcIcon}
+          onClick={(event) => handleRouteClick(event, route.pathname)}
+        >
+          {route.data.bcLabel}
         </Breadcrumb.Item>
       ))}
     </Breadcrumb>

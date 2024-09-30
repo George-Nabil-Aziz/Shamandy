@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 
 // UI
-import { AppBreadcrumb } from "../components/breadcrumb";
+import { AppBreadcrumb } from "/src";
 
 export const MainLayout = () => {
   return (
