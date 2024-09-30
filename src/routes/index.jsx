@@ -14,17 +14,17 @@ export const routes = [
     element: <MainLayout />,
     loader() {
       return {
-        bcLabel: "MainLayout",
+        bcLabel: "Home",
         bcIcon: HiHome,
       };
     },
     children: [
       {
-        path: "",
+        path: "sayed",
         element: <MainPage />,
         loader() {
           return {
-            bcLabel: "MainPage",
+            bcLabel: "SayedPage",
             bcIcon: GiTurtle,
           };
         },
