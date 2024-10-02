@@ -9,6 +9,7 @@ export const History = () => {
       <p>30-09-2024: Router</p>
       <p>02-10-2024: 404 page</p>
       <p>02-10-2024: iconify-icon</p>
+      <p>02-10-2024: Prod deploy</p>
     </div>
   );
 };
