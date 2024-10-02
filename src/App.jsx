@@ -7,6 +7,9 @@ import { useScreenSize } from "/src";
 // Components
 import { routes } from "./routes";
 
+// iconify-icon
+import "iconify-icon";
+
 export default function App() {
   // Hooks
   const screen = useScreenSize();
