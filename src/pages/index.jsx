@@ -15,7 +15,6 @@ export const MainPage = () => {
         <Dropdown.Item>Earnings</Dropdown.Item>
         <Dropdown.Item>Sign out</Dropdown.Item>
       </Dropdown>
-      Next step: Jumbotron
     </div>
   );
 };

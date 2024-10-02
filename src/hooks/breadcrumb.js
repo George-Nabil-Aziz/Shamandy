@@ -11,7 +11,7 @@ export const useBreadcrumb = () => {
   // Currnet route - last route
   const currentRoute = routes[routes.length - 1];
 
-  //
+  // Router Click
   const handleRouteClick = (event, path) => {
     event.preventDefault();
     navigate(path);
