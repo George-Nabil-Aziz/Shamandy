@@ -58,4 +58,10 @@ export const routes = [
       },
     ],
   },
+
+  // 404 Page
+  {
+    path: "*",
+    element: "You donkey",
+  },
 ];
