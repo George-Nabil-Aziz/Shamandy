@@ -1,21 +1,21 @@
-import { Button, Datepicker, Dropdown } from "flowbite-react";
+// React
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-function App() {
-  return (
-    <div>
-      <Datepicker />
-      <div>TmTm</div>
-      <div>SmSm</div>
-      <div>BmBm</div>
-      <Button>Shalaby</Button>
-      <Dropdown label="Dropdown button" dismissOnClick={false}>
-        <Dropdown.Item>Dashboard</Dropdown.Item>
-        <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>Earnings</Dropdown.Item>
-        <Dropdown.Item>Sign out</Dropdown.Item>
-      </Dropdown>
-    </div>
-  );
+// UI
+import { useScreenSize } from "/src";
+
+// Components
+import { routes } from "./routes";
+
+// iconify-icon
+import "iconify-icon";
+
+export default function App() {
+  // Hooks
+  const screen = useScreenSize();
+
+  // Router
+  const router = createBrowserRouter(routes);
+
+  return <RouterProvider router={router} />;
 }
-
-export default App;
