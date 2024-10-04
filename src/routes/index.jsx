@@ -1,7 +1,11 @@
-// Components
+// React
 import { Outlet } from "react-router-dom";
+
+// Components
+import { Error404Page } from "../pages/404";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
+import { History } from "../pages/history";
 
 // React Icons
 import { HiHome } from "react-icons/hi";
@@ -10,7 +14,6 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { GiSandwich } from "react-icons/gi";
 import { BsBackpack2 } from "react-icons/bs";
 import { SiHomebridge } from "react-icons/si";
-import { History } from "../pages/history";
 
 export const routes = [
   {
@@ -44,7 +47,7 @@ export const routes = [
           return {
             bcLabel: "Helloooo",
             bcIcon: GiTurtle,
-            jtTitle: "Here you can say hello to others",
+            jtTitle: "Here you can say hello to sayed",
             jtIcon: GiTurtle,
           };
         },
@@ -69,6 +72,6 @@ export const routes = [
   // 404 Page
   {
     path: "*",
-    element: "You donkey",
+    element: <Error404Page />,
   },
 ];
