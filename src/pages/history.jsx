@@ -11,6 +11,8 @@ export const History = () => {
       <p>02-10-2024: iconify-icon</p>
       <p>02-10-2024: Prod deploy</p>
       <p>04-10-2024: Button Component</p>
+      <p>04-10-2024: Header, Sidebar, Footer</p>
+      <p>04-10-2024: Dark theme</p>
     </div>
   );
 };
