@@ -1,8 +1,8 @@
 // UI
-import { AppButton, Icon } from "/src";
+import { AppButton } from "/src";
 
 // Flowbite
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
 
 export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => (
   <Navbar fluid rounded className="fixed top-0 right-0 left-0">
@@ -41,6 +41,9 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => (
         <Dropdown.Divider />
         <Dropdown.Item>Sign out</Dropdown.Item>
       </Dropdown>
+
+      <DarkThemeToggle />
+
       <Navbar.Toggle />
     </div>
     <Navbar.Collapse>
