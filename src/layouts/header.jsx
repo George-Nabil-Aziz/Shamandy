@@ -5,7 +5,7 @@ import { AppButton } from "/src";
 import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
 
 export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => (
-  <Navbar fluid rounded className="fixed top-0 right-0 left-0">
+  <Navbar fluid rounded className="fixed top-0 right-0 left-0 z-[10]">
     <Navbar.Brand href="#">
       {/* <AppButton
         outline
