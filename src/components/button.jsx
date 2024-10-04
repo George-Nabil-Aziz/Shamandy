@@ -1,16 +1,26 @@
 // React
 import { Link } from "react-router-dom";
 
+// UI
+import { Icon } from "/src";
+
 // Flowbite
-import { Button as FlowbiteButton } from "flowbite-react";
+import { Button } from "flowbite-react";
 
 // React icons
 import { ImSpinner9 } from "react-icons/im";
 
-export const Button = ({ label, path, danger, loading, ...button }) => {
+export const AppButton = ({
+  label,
+  path,
+  danger,
+  loading,
+  icon,
+  ...button
+}) => {
   return (
     <div>
-      <FlowbiteButton
+      <Button
         key={path && path}
         as={path && Link}
         to={path && path}
@@ -23,7 +33,8 @@ export const Button = ({ label, path, danger, loading, ...button }) => {
         {...button}
       >
         <div>{label}</div>
-      </FlowbiteButton>
+        {icon && <Icon icon={icon} className={!!label && "ml-2"} width={18} />}
+      </Button>
     </div>
   );
 };
