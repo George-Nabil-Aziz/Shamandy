@@ -10,7 +10,7 @@ export const MainLayout = () => {
     { path: "/sayed", label: "Sayed", outline: true },
     { path: "/hello", label: "Hello", outline: true },
     { path: "/hello/beeb", label: "History" },
-    { path: "/page", label: "#", outline: true },
+    { path: "/page", label: "#", outline: true, danger: true },
   ];
 
   return (
