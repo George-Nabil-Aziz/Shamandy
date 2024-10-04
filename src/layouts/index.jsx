@@ -19,7 +19,7 @@ export const MainLayout = () => {
       <Jumbotron />
       <div className="flex flex-wrap gap-2 p-2">
         {data.map(({ label, path, ...button }) => (
-          <Button label={label} path={path} {...button} />
+          <Button key={path} label={label} path={path} {...button} />
         ))}
       </div>
 
