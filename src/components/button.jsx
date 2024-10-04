@@ -12,10 +12,11 @@ import { ImSpinner9 } from "react-icons/im";
 
 export const AppButton = ({
   label,
+  icon,
   path,
   danger,
   loading,
-  icon,
+  size = "sm",
   ...button
 }) => {
   return (
@@ -29,6 +30,7 @@ export const AppButton = ({
         processingSpinner={
           loading && <ImSpinner9 className="h-6 w-6 animate-spin" />
         }
+        size={size}
         pill
         {...button}
       >
