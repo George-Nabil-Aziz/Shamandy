@@ -6,19 +6,18 @@ import { AppBreadcrumb, Jumbotron, Button } from "/src";
 
 export const MainLayout = () => {
   const data = [
-    { path: "/", label: "Home", color: "blue" },
-    { path: "/sayed", label: "Sayed", color: "dark" },
-    { path: "/hello", label: "Hello", color: "success" },
-    { path: "/hello/beeb", label: "History", color: "failure" },
-    { path: "/page1", label: "#", color: "warning", pill: true },
-    { path: "/page2", label: "#", color: "purple", pill: true },
+    { path: "/", label: "Home" },
+    { path: "/sayed", label: "Sayed", outline: true },
+    { path: "/hello", label: "Hello", outline: true },
+    { path: "/hello/beeb", label: "History" },
+    { path: "/page", label: "#", outline: true },
   ];
 
   return (
     <div className="p-2">
       <AppBreadcrumb />
       <Jumbotron />
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 p-2">
         {data.map(({ label, path, ...button }) => (
           <Button label={label} path={path} {...button} />
         ))}
