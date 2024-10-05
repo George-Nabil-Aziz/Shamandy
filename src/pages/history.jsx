@@ -12,6 +12,9 @@ export const History = () => {
       <p>04-10-2024: Button Component</p>
       <p>04-10-2024: Header, Sidebar, Footer</p>
       <p>04-10-2024: Dark theme</p>
+      <p>05-10-2024: Stable project functions before any implementations</p>
+      <p></p>
+
       <hr />
       <h1 className="flex gap-2 items-center">
         <Icon icon="emojione:turtle" width={40} />
