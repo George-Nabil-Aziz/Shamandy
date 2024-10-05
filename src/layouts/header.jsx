@@ -1,5 +1,5 @@
 // React
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // UI
 import { AppButton, StaticData } from "/src";
@@ -11,23 +11,28 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
   // TODO: Static data
   const { data } = StaticData();
 
+  // Hook
+  const location = useLocation();
+
   return (
     <Navbar
       fluid
       rounded
       className="fixed top-0 right-0 left-0 z-[10] border-b"
     >
-      <Navbar.Brand as={Link} to="/">
+      <div className="flex justify-center items-center">
         <AppButton
           outline
           icon="iconamoon:menu-burger-horizontal-fill"
           onClick={() => setSidebarVisibility((prev) => !prev)}
         />
-        <img src="/favicon.png" className="mx-3 h-6 sm:h-9" alt="Ta3mia" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Bashandy
-        </span>
-      </Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          <img src="/favicon.png" className="mx-3 h-6 sm:h-9" alt="Ta3mia" />
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            Bashandy
+          </span>
+        </Navbar.Brand>
+      </div>
       <div className="flex md:order-2 gap-2">
         <Dropdown
           arrowIcon={false}
@@ -58,8 +63,13 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        {data.map(({ label, path, icon, ...button }) => (
-          <Navbar.Link key={path} as={Link} to={path}>
+        {data.map(({ label, path, icon }) => (
+          <Navbar.Link
+            key={path}
+            as={Link}
+            to={path}
+            active={location.pathname === path}
+          >
             {label}
           </Navbar.Link>
         ))}

@@ -1,5 +1,5 @@
 // React
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // UI
 import { StaticData } from "/src";
@@ -11,6 +11,9 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
   // TODO: Static data
   const { data } = StaticData();
 
+  // Hook
+  const location = useLocation();
+
   return (
     <Sidebar
       aria-label="Sidebar with logo branding example"
@@ -21,7 +24,13 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           {data.map(({ label, path, icon }) => (
-            <Sidebar.Item key={path} as={Link} to={path} icon={icon}>
+            <Sidebar.Item
+              key={path}
+              as={Link}
+              to={path}
+              icon={icon}
+              active={location.pathname === path}
+            >
               {label}
             </Sidebar.Item>
           ))}
