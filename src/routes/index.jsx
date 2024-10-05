@@ -37,38 +37,24 @@ export const routes = [
         element: <MainPage />,
         loader() {
           return {
-            bcLabel: "SayedPage",
-            bcIcon: GiTurtle,
+            bcLabel: "Sayed",
+            bcIcon: BsBackpack2,
             jtTitle: "Here you can pay to sayed 2 pounds for torshy",
-            jtIcon: BsBackpack2,
+            jtIcon: GiTurtle,
           };
         },
       },
       {
-        path: "hello",
-        element: <Outlet />,
+        path: "history",
+        element: <History />,
         loader() {
           return {
-            bcLabel: "Helloooo",
-            bcIcon: GiTurtle,
-            jtTitle: "Here you can say hello to sayed",
-            jtIcon: GiTurtle,
+            bcLabel: "History",
+            bcIcon: CiDeliveryTruck,
+            jtTitle: "Here you can reserve your Bashandy order",
+            jtIcon: GiSandwich,
           };
         },
-        children: [
-          {
-            path: "beeb",
-            element: <History />,
-            loader() {
-              return {
-                bcLabel: "Beeb",
-                bcIcon: CiDeliveryTruck,
-                jtTitle: "Here you can reserve your Bashandy order",
-                jtIcon: GiSandwich,
-              };
-            },
-          },
-        ],
       },
     ],
   },
