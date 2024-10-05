@@ -22,8 +22,11 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <div className="flex justify-center items-center">
         <AppButton
-          outline
-          icon="iconamoon:menu-burger-horizontal-fill"
+          icon={
+            isSidebarVisibile
+              ? "heroicons:bars-3-center-left-16-solid"
+              : "iconamoon:menu-burger-horizontal-fill"
+          }
           onClick={() => setSidebarVisibility((prev) => !prev)}
         />
         <Navbar.Brand as={Link} to="/">
