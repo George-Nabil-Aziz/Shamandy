@@ -1,46 +1,55 @@
 // React
-import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 // UI
-import { AppBreadcrumb, Jumbotron } from "/src";
+import { AppBreadcrumb, Jumbotron, AppButton } from "/src";
 
-// Flowbite
-import { Button } from "flowbite-react";
+// Components
+import { AppHeader } from "./header";
+import { AppSidebar } from "./sidebar";
+import { AppFooter } from "./footer";
+import { useScreenSize } from "../hooks";
 
 export const MainLayout = () => {
   // Hooks
-  const navigate = useNavigate();
+  const screen = useScreenSize();
 
-  const data = [
-    { path: "/", label: "Home", color: "blue", pill: true },
-    { path: "/sayed", label: "Sayed", color: "gray", pill: true },
-    { path: "/hello", label: "Hello", color: "dark" },
-    { path: "/hello/beeb", label: "Beeb", color: "light" },
-    { path: "/page1", label: "#", color: "success", outline: true },
-    { path: "/page2", label: "#", color: "failure", outline: true },
-    { path: "/page3", label: "#", color: "warning", outline: true },
-    { path: "/page4", label: "#", color: "purple", outline: true },
-  ];
+  // State
+  const [isSidebarVisibile, setSidebarVisibility] = useState(true);
+
+  useEffect(() => {
+    if (screen.lte.md()) setSidebarVisibility(false);
+    else setSidebarVisibility(true);
+  }, [screen.size]);
 
   return (
-    <>
-      <AppBreadcrumb />
-      <Jumbotron />
-      <div className="flex flex-wrap gap-2">
-        {data.map(({ path, label, color, ...button }) => (
-          <Button
-            key={path}
-            onClick={() => navigate(path)}
-            color={color}
-            {...button}
-          >
-            {label}
-          </Button>
-        ))}
-      </div>
-      <Button color="purple">Purple</Button>
+    <div
+      className={`pt-16 pb-24 ${
+        isSidebarVisibile ? "pl-64" : "pl-0"
+      } bg-backgroundColor dark:bg-darkBackgroundColor transition-all h-screen overflow-y-auto`}
+    >
+      <AppHeader
+        isSidebarVisibile={isSidebarVisibile}
+        setSidebarVisibility={setSidebarVisibility}
+      />
 
-      <Outlet />
-    </>
+      <AppSidebar
+        isSidebarVisibile={isSidebarVisibile}
+        setSidebarVisibility={setSidebarVisibility}
+      />
+
+      <div className="pt-4 px-4 space-y-4">
+        <AppBreadcrumb />
+
+        <Jumbotron />
+
+        <div className="p-4 border-2 rounded-2xl overflow-auto">
+          <Outlet />
+        </div>
+      </div>
+
+      <AppFooter />
+    </div>
   );
 };
