@@ -19,7 +19,6 @@ export const History = () => {
       </h1>
 
       <h2>-gh-pages (Github pages)</h2>
-      <h2>-Enhance sidebar</h2>
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
       <h2>-</h2>
