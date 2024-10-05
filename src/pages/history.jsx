@@ -22,7 +22,7 @@ export const History = () => {
       </h1>
 
       <h2 className="font-black">
-        -Study table of (row, column), how to get value of table from row and
+        -✅Study table of (row, column), how to get value of table from row and
         column
       </h2>
       <h2>-gh-pages (Github pages)</h2>
