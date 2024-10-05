@@ -20,7 +20,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
       rounded
       className="fixed top-0 right-0 left-0 z-[10] border-b"
     >
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center gap-3">
         <AppButton
           icon={
             isSidebarVisibile
@@ -28,9 +28,10 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
               : "iconamoon:menu-burger-horizontal-fill"
           }
           onClick={() => setSidebarVisibility((prev) => !prev)}
+          className="hidden lg:block"
         />
         <Navbar.Brand as={Link} to="/">
-          <img src="/favicon.png" className="mx-3 h-6 sm:h-9" alt="Ta3mia" />
+          <img src="/favicon.png" className="mr-3 h-6 sm:h-9" alt="Ta3mia" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Bashandy
           </span>
@@ -63,9 +64,9 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
         <DarkThemeToggle />
 
-        <Navbar.Toggle />
+        <Navbar.Toggle className="!block lg:!hidden" />
       </div>
-      <Navbar.Collapse>
+      <Navbar.Collapse className="lg:!hidden">
         {data.map(({ label, path, icon }) => (
           <Navbar.Link
             key={path}
