@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import { Error404Page } from "../pages/404";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
+import { OrderPage } from "../pages/order";
 import { History } from "../pages/history";
 
 // React Icons
@@ -30,11 +31,11 @@ export const routes = [
     children: [
       {
         path: "",
-        element: <img className="w-full" src="/fool.png" alt="Fool" />,
+        element: <MainPage />,
       },
       {
         path: "sayed",
-        element: <MainPage />,
+        element: <OrderPage />,
         loader() {
           return {
             bcLabel: "Sayed",
