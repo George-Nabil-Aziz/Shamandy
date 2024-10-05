@@ -1,5 +1,6 @@
 // React icons
-import { HiChartPie, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
+import { HiChartPie, HiShoppingBag, HiUser } from "react-icons/hi";
+import { GiDonkey } from "react-icons/gi";
 
 export const StaticData = () => {
   // TODO: Static data
@@ -7,7 +8,7 @@ export const StaticData = () => {
     { path: "/", label: "Home", icon: HiChartPie },
     { path: "/sayed", label: "Sayed", icon: HiUser },
     { path: "/history", label: "History", icon: HiShoppingBag },
-    { path: "/page", label: "#", icon: HiTable },
+    { path: "/donkey", label: "#", icon: GiDonkey },
   ];
   return { data };
 };
