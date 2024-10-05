@@ -50,7 +50,7 @@ export const useScreenSize = () => {
     xxl: () => isSize("xxl"),
 
     // Is equal to or greater
-    gtE: {
+    gte: {
       xs: () => isEqualOrGreater("xs"),
       sm: () => isEqualOrGreater("sm"),
       md: () => isEqualOrGreater("md"),
@@ -60,7 +60,7 @@ export const useScreenSize = () => {
     },
 
     // Is equal to or smaller
-    ltE: {
+    lte: {
       xs: () => isEqualOrSmaller("xs"),
       sm: () => isEqualOrSmaller("sm"),
       md: () => isEqualOrSmaller("md"),
