@@ -21,6 +21,10 @@ export const History = () => {
         Next step:
       </h1>
 
+      <h2 className="font-black">
+        -Study table of (row, column), how to get value of table from row and
+        column
+      </h2>
       <h2>-gh-pages (Github pages)</h2>
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
