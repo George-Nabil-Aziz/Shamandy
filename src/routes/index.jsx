@@ -23,11 +23,15 @@ export const routes = [
       return {
         bcLabel: "Home",
         bcIcon: HiHome,
-        jtTitle: "Here you can't do anything here",
+        jtTitle: "Hungry ?",
         jtIcon: SiHomebridge,
       };
     },
     children: [
+      {
+        path: "",
+        element: <img className="w-full" src="/fool.png" alt="Fool" />,
+      },
       {
         path: "sayed",
         element: <MainPage />,
