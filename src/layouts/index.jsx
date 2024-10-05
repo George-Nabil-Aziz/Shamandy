@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 // UI
@@ -9,10 +9,19 @@ import { AppBreadcrumb, Jumbotron, AppButton } from "/src";
 import { AppHeader } from "./header";
 import { AppSidebar } from "./sidebar";
 import { AppFooter } from "./footer";
+import { useScreenSize } from "../hooks";
 
 export const MainLayout = () => {
+  // Hooks
+  const screen = useScreenSize();
+
   // State
   const [isSidebarVisibile, setSidebarVisibility] = useState(true);
+
+  useEffect(() => {
+    if (screen.lte.md()) setSidebarVisibility(false);
+    else setSidebarVisibility(true);
+  }, [screen.size]);
 
   return (
     <div
