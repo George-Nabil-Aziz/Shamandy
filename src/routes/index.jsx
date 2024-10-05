@@ -51,7 +51,7 @@ export const routes = [
           return {
             bcLabel: "History",
             bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Bashandy order",
+            jtTitle: "Here you can reserve your Shamandy order",
             jtIcon: GiSandwich,
           };
         },
