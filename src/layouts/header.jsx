@@ -5,14 +5,14 @@ import { AppButton } from "/src";
 import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
 
 export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => (
-  <Navbar fluid rounded className="fixed top-0 right-0 left-0 z-[10]">
+  <Navbar fluid rounded className="fixed top-0 right-0 left-0 z-[10] border-b">
     <Navbar.Brand href="#">
       {/* <AppButton
         outline
         icon="iconamoon:menu-burger-horizontal-fill"
         onClick={() => setSidebarVisibility(true)}
       /> */}
-      <img src="/public/favicon.png" className="mr-3 h-6 sm:h-9" alt="Ta3mia" />
+      <img src="/favicon.png" className="mr-3 h-6 sm:h-9" alt="Ta3mia" />
       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
         Bashandy
       </span>

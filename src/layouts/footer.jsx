@@ -3,11 +3,11 @@ import { Footer } from "flowbite-react";
 
 export const AppFooter = () => {
   return (
-    <Footer container className="fixed right-0 bottom-0 left-0">
+    <Footer container className="fixed right-0 bottom-0 left-0 border-t">
       <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
         <Footer.Brand
           href="#"
-          src="/public/favicon.png"
+          src="/favicon.png"
           alt="Ta3mia"
           name="Flowbite"
         />
