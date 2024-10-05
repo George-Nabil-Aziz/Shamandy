@@ -13,3 +13,13 @@ export const StaticData = () => {
   ];
   return { data };
 };
+
+export const PreferencesUser = [
+  { name: "Pero", fool: 2, ta3mia: 3 },
+  { name: "Devo", fool: 2, ta3mia: 3 },
+  { name: "Mummy", fool: 2, ta3mia: 3 },
+  { name: "Pappy", fool: 2, ta3mia: 3 },
+  { name: "BoBool", fool: 2, ta3mia: 3 },
+  { name: "Smsm", fool: 2, ta3mia: 3 },
+  { name: "Gogo", fool: 2, ta3mia: 3 },
+];
