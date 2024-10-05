@@ -16,9 +16,9 @@ export const MainLayout = () => {
 
   return (
     <div
-      className={`pt-16 pb-20 ${
+      className={`pt-16 pb-24 ${
         isSidebarVisibile ? "pl-64" : "pl-0"
-      } bg-backgroundColor dark:bg-darkBackgroundColor transition-all`}
+      } bg-backgroundColor dark:bg-darkBackgroundColor transition-all h-screen overflow-y-auto`}
     >
       <AppHeader
         isSidebarVisibile={isSidebarVisibile}
