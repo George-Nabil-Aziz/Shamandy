@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import { Error404Page } from "../pages/404";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
+import { OrderPage } from "../pages/order-table";
 import { History } from "../pages/history";
 
 // React Icons
@@ -30,11 +31,11 @@ export const routes = [
     children: [
       {
         path: "",
-        element: <img className="w-full" src="/fool.png" alt="Fool" />,
+        element: <MainPage />,
       },
       {
         path: "sayed",
-        element: <MainPage />,
+        element: <OrderPage />,
         loader() {
           return {
             bcLabel: "Sayed",
@@ -44,18 +45,19 @@ export const routes = [
           };
         },
       },
-      {
-        path: "history",
-        element: <History />,
-        loader() {
-          return {
-            bcLabel: "History",
-            bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Shamandy order",
-            jtIcon: GiSandwich,
-          };
-        },
-      },
+      // @TODO: Add when needed
+      // {
+      //   path: "history",
+      //   element: <History />,
+      //   loader() {
+      //     return {
+      //       bcLabel: "History",
+      //       bcIcon: CiDeliveryTruck,
+      //       jtTitle: "Here you can reserve your Shamandy order",
+      //       jtIcon: GiSandwich,
+      //     };
+      //   },
+      // },
     ],
   },
 
