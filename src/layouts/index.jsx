@@ -44,7 +44,7 @@ export const MainLayout = () => {
 
         <Jumbotron />
 
-        <div className="p-4 border-2 rounded-2xl overflow-auto">
+        <div className="p-4 border-2 rounded-2xl overflow-auto text-textColor dark:text-darkTextColor">
           <Outlet />
         </div>
       </div>

@@ -64,7 +64,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
         <DarkThemeToggle />
 
-        <Navbar.Toggle className="!block lg:!hidden" />
+        <Navbar.Toggle className="!block md:!hidden" />
       </div>
       <Navbar.Collapse className="lg:!hidden">
         {data.map(({ label, path, icon }) => (
