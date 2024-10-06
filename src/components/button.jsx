@@ -19,9 +19,16 @@ export const AppButton = ({
   size = "sm",
   ...button
 }) => {
+  const customTheme = {
+    inner: {
+      outline: "border border-transparent text-lime-800 dark:text-lime-300",
+    },
+  };
+
   return (
     <div>
       <Button
+        theme={customTheme}
         key={path && path}
         as={path && Link}
         to={path && path}
