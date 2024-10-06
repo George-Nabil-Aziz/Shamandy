@@ -13,6 +13,9 @@ export const History = () => {
       <p>04-10-2024: Header, Sidebar, Footer</p>
       <p>04-10-2024: Dark theme</p>
       <p>05-10-2024: Stable project functions before any implementations</p>
+      <p>06-10-2024: Adding table orders with names</p>
+      <p>06-10-2024: Prod deploy</p>
+      <p>00-10-2024: </p>
       <p></p>
 
       <hr />
