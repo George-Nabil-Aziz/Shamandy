@@ -8,7 +8,8 @@ export const StaticData = () => {
   const data = [
     { path: "/", label: "Home", icon: HiChartPie },
     { path: "/sayed", label: "Sayed", icon: HiUser },
-    { path: "/history", label: "History", icon: FaHistory },
+    // @TODO: Add when needed
+    // { path: "/history", label: "History", icon: FaHistory },
     { path: "/donkey", label: "#", icon: GiDonkey },
   ];
   return { data };

@@ -45,18 +45,19 @@ export const routes = [
           };
         },
       },
-      {
-        path: "history",
-        element: <History />,
-        loader() {
-          return {
-            bcLabel: "History",
-            bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Shamandy order",
-            jtIcon: GiSandwich,
-          };
-        },
-      },
+      // @TODO: Add when needed
+      // {
+      //   path: "history",
+      //   element: <History />,
+      //   loader() {
+      //     return {
+      //       bcLabel: "History",
+      //       bcIcon: CiDeliveryTruck,
+      //       jtTitle: "Here you can reserve your Shamandy order",
+      //       jtIcon: GiSandwich,
+      //     };
+      //   },
+      // },
     ],
   },
 
