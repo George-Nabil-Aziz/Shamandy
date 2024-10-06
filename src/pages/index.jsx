@@ -1,3 +1,6 @@
 export const MainPage = () => (
-  <img className="w-full" src="/fool.png" alt="Fool" />
+  <>
+    <p>Shamandy is better than el Prince</p>
+    <img className="w-full" src="/fool.png" alt="Fool" />
+  </>
 );
