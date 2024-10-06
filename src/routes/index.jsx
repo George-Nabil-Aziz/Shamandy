@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { Error404Page } from "../pages/404";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
-import { OrderPage } from "../pages/order";
+import { OrderPage } from "../pages/order-table";
 import { History } from "../pages/history";
 
 // React Icons

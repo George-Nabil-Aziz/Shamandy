@@ -1,51 +1,43 @@
+// React
+import { useEffect, useState } from "react";
+
 // Flowbite
-import { Button, Datepicker, Dropdown } from "flowbite-react";
+import { TextInput, Label, Select } from "flowbite-react";
 
 // TODO: Static data
-import { PreferencesUser } from "../services/static-data";
+import {
+  PreferencesUser,
+  PreferencesUser2,
+  UnitPrice,
+} from "../services/static-data";
 
 export const OrderPage = () => {
-  return (
-    <div>
-      <Datepicker />
-      <div>TmTm</div>
-      <div>SmSm</div>
-      <div>BmBm</div>
-      <Button>Shalaby</Button>
-      <Dropdown label="Dropdown button" dismissOnClick={false}>
-        <Dropdown.Item>Dashboard</Dropdown.Item>
-        <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>Earnings</Dropdown.Item>
-        <Dropdown.Item>Sign out</Dropdown.Item>
-      </Dropdown>
-      <hr />
+  // State
+  const [sandwitchCount, setSandwitchCount] = useState(0);
+  const [sandwitchKind, setSandwitchKind] = useState(1);
 
-      <div className=" flex gap-4">
-        {PreferencesUser.map((user) => (
-          <div>
-            <p>
-              <span>Name: </span>
-              <span>{user.name}</span>
-            </p>
-            <p>
-              <span>Fool: </span>
-              <span>{user.fool}</span>
-            </p>
-            <p>
-              <span>Ta3mia: </span>
-              <span>{user.ta3mia}</span>
-            </p>
-            <p>
-              <span>Fool: </span>
-              <span>{user.fool}</span>
-            </p>
-            <p>
-              <span>Batates: </span>
-              <span>{user.batates}</span>
-            </p>
-          </div>
+  useEffect(() => setSandwitchKind("fool"), []);
+
+  return (
+    <div className="flex items-center gap-4">
+      I will get
+      <TextInput
+        value={sandwitchCount}
+        type="number"
+        min={0}
+        onChange={(num) => setSandwitchCount(num.target.value)}
+      />
+      sandwitch
+      <Select
+        id="sandwitch"
+        required
+        onChange={(num) => setSandwitchKind(num.target.value)}
+      >
+        {Object.keys(UnitPrice).map((sandwitch) => (
+          <option key={sandwitch}>{sandwitch}</option>
         ))}
-      </div>
+      </Select>
+      = {sandwitchCount * UnitPrice[sandwitchKind]}
     </div>
   );
 };
