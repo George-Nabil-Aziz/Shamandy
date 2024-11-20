@@ -17,13 +17,62 @@ import {
 export const OrderPage = () => {
   const [isShowFullButtons, setShowFullButtons] = useState(false);
   const [order, setOrder] = useState({
-    mina: { name: "pappy", fool: 0, ta3mia: 0, batates: 0 },
-    dalia: { name: "mummy", fool: 0, ta3mia: 0, batates: 0 },
-    pero: { name: "batbat", fool: 0, ta3mia: 0, batates: 0 },
-    devo: { name: "davdav", fool: 0, ta3mia: 0, batates: 0 },
-    gedo: { name: "boobol", fool: 0, ta3mia: 0, batates: 0 },
-    teta: { name: "smsm", fool: 0, ta3mia: 0, batates: 0 },
-    gogo: { name: "gogo", fool: 0, ta3mia: 0, batates: 0 },
+    mina: {
+      name: "pappy",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    dalia: {
+      name: "mummy",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    pero: {
+      name: "batbat",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    devo: {
+      name: "davdav",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    gedo: {
+      name: "boobol",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    teta: {
+      name: "smsm",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
+    gogo: {
+      name: "gogo",
+      fool: 0,
+      ta3mia: 0,
+      batates: 0,
+      koshary: 0,
+      tagen: 0,
+    },
   });
 
   const handleAllOfKind = (kind) => {
@@ -48,6 +97,8 @@ export const OrderPage = () => {
           <Table.HeadCell>Fool</Table.HeadCell>
           <Table.HeadCell>Ta3mia</Table.HeadCell>
           <Table.HeadCell>Batates</Table.HeadCell>
+          <Table.HeadCell>Koshary</Table.HeadCell>
+          <Table.HeadCell>Tagen</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
           {Object.keys(order).map((user) => (
@@ -66,7 +117,6 @@ export const OrderPage = () => {
                   onChange={(sandwitchCount) =>
                     setOrder((prev) => ({
                       ...prev,
-                      // [user]: { ...[user], fool: sandwitchCount },
                       [user]: {
                         ...prev[user],
                         fool: sandwitchCount.target.value,
@@ -111,6 +161,42 @@ export const OrderPage = () => {
                   }
                 />
               </Table.Cell>
+              <Table.Cell className="capitalize">
+                <TextInput
+                  type="number"
+                  min={0}
+                  sizing="sm"
+                  className="max-w-20"
+                  value={order[user].koshary}
+                  onChange={(sandwitchCount) =>
+                    setOrder((prev) => ({
+                      ...prev,
+                      [user]: {
+                        ...prev[user],
+                        koshary: sandwitchCount.target.value,
+                      },
+                    }))
+                  }
+                />
+              </Table.Cell>
+              <Table.Cell className="capitalize">
+                <TextInput
+                  type="number"
+                  min={0}
+                  sizing="sm"
+                  className="max-w-20"
+                  value={order[user].tagen}
+                  onChange={(sandwitchCount) =>
+                    setOrder((prev) => ({
+                      ...prev,
+                      [user]: {
+                        ...prev[user],
+                        tagen: sandwitchCount.target.value,
+                      },
+                    }))
+                  }
+                />
+              </Table.Cell>
             </Table.Row>
           ))}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
@@ -118,6 +204,8 @@ export const OrderPage = () => {
             <Table.Cell>{handleAllOfKind("fool")}</Table.Cell>
             <Table.Cell>{handleAllOfKind("ta3mia")}</Table.Cell>
             <Table.Cell>{handleAllOfKind("batates")}</Table.Cell>
+            <Table.Cell>{handleAllOfKind("koshary")}</Table.Cell>
+            <Table.Cell>{handleAllOfKind("tagen")}</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
