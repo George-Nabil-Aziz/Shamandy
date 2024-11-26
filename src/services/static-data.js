@@ -1,6 +1,7 @@
 // React icons
 import { HiChartPie, HiUser } from "react-icons/hi";
 import { GiDonkey } from "react-icons/gi";
+import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 
 export const StaticData = () => {
@@ -10,61 +11,28 @@ export const StaticData = () => {
     { path: "/sayed", label: "Sayed", icon: HiUser },
     // @TODO: Add when needed
     // { path: "/history", label: "History", icon: FaHistory },
+    { path: "/create", label: "Create", icon: MdOutlineAddCircle },
     { path: "/donkey", label: "#", icon: GiDonkey },
   ];
   return { data };
 };
 
+export const mainSandwichs = {
+  fool: 0,
+  ta3mia: 0,
+  batates: 0,
+  koshary: 0,
+  tagen: 0,
+};
+
 export const PreferencesUser = {
-  pappy: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  mummy: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  batbat: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  davdav: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  davdav: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  smsm: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
-  gogo: {
-    fool: 0,
-    ta3mia: 0,
-    batates: 0,
-    koshary: 0,
-    tagen: 0,
-  },
+  pappy: mainSandwichs,
+  mummy: mainSandwichs,
+  batbat: mainSandwichs,
+  davdav: mainSandwichs,
+  boobol: mainSandwichs,
+  smsm: mainSandwichs,
+  gogo: mainSandwichs,
 };
 
 export const UnitPrice = {
