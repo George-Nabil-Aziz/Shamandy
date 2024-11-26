@@ -73,7 +73,7 @@ export const OrderPage = () => {
                     type="number"
                     min={0}
                     sizing="sm"
-                    className="max-w-20"
+                    className="min-w-12 max-w-20"
                     value={order[user][mainSandwitch]}
                     onChange={(sandwichCount) =>
                       setOrder((prev) => ({
@@ -102,7 +102,7 @@ export const OrderPage = () => {
 
           {/* Total unit sandwich price */}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
-            <Table.Cell className="whitespace-nowrap">Unit price</Table.Cell>
+            <Table.Cell className="whitespace-nowrap">Column price</Table.Cell>
             {Object.keys(unitPrice).map((unit) => (
               <Table.Cell key={unit} className="whitespace-nowrap">
                 {handleAllOfKind(unit) * unitPrice[unit]}
