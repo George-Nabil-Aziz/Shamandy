@@ -46,18 +46,18 @@ export const routes = [
         },
       },
       // @TODO: Add when needed
-      // {
-      //   path: "history",
-      //   element: <History />,
-      //   loader() {
-      //     return {
-      //       bcLabel: "History",
-      //       bcIcon: CiDeliveryTruck,
-      //       jtTitle: "Here you can reserve your Shamandy order",
-      //       jtIcon: GiSandwich,
-      //     };
-      //   },
-      // },
+      {
+        path: "history",
+        element: <History />,
+        loader() {
+          return {
+            bcLabel: "History",
+            bcIcon: CiDeliveryTruck,
+            jtTitle: "Here you can reserve your Shamandy order",
+            jtIcon: GiSandwich,
+          };
+        },
+      },
     ],
   },
 
