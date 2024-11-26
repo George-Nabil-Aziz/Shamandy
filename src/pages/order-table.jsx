@@ -1,19 +1,28 @@
 // React
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-// UI
-import { AppButton } from "/src";
+// Core
+import { AppButton, AppContext } from "/src";
 
 // Flowbite
 import { TextInput, Label, Select, Table } from "flowbite-react";
 
-// TODO: Static data
-import { PreferencesUser, UnitPrice } from "../services/static-data";
-
 export const OrderPage = () => {
-  const [isShowFullButtons, setShowFullButtons] = useState(false);
-  const [order, setOrder] = useState(PreferencesUser);
+  // Context
+  const {
+    mainUserSandwitchs,
+    setMainUserSandwitchs,
+    usersData,
+    setUsersData,
+    unitPrice,
+    setUnitPrice,
+  } = useContext(AppContext);
 
+  // State
+  const [isShowFullButtons, setShowFullButtons] = useState(false);
+  const [order, setOrder] = useState(usersData);
+
+  // Methods
   const handleAllOfKind = (kind) => {
     let resultAllOfKind = 0;
     Object.keys(order).map((user) => (resultAllOfKind += +order[user][kind]));
@@ -26,17 +35,17 @@ export const OrderPage = () => {
     } else setShowFullButtons(false);
   };
 
-  const handleHello = () => {
-    let totalPriceAllSandwitchs = 0;
-    Object.keys(UnitPrice).map((unit) => {
-      let totalPriceUnitSandwitch = 0;
+  const handleTotalReceipt = () => {
+    let totalPriceAllSandwichs = 0;
+    Object.keys(unitPrice).map((unit) => {
+      let totalPriceUnitSandwich = 0;
       Object.keys(order).map((user) => {
-        totalPriceUnitSandwitch += +order[user][unit];
+        totalPriceUnitSandwich += +order[user][unit];
       });
-      return (totalPriceAllSandwitchs +=
-        totalPriceUnitSandwitch * UnitPrice[unit]);
+      return (totalPriceAllSandwichs +=
+        totalPriceUnitSandwich * unitPrice[unit]);
     });
-    return totalPriceAllSandwitchs;
+    return totalPriceAllSandwichs;
   };
 
   useEffect(() => handleShowFullButton(), []);
@@ -46,11 +55,9 @@ export const OrderPage = () => {
       <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Name</Table.HeadCell>
-          <Table.HeadCell>Fool</Table.HeadCell>
-          <Table.HeadCell>Ta3mia</Table.HeadCell>
-          <Table.HeadCell>Batates</Table.HeadCell>
-          <Table.HeadCell>Koshary</Table.HeadCell>
-          <Table.HeadCell>Tagen</Table.HeadCell>
+          {Object.keys(mainUserSandwitchs).map((mainSandwitch) => (
+            <Table.HeadCell>{mainSandwitch}</Table.HeadCell>
+          ))}
         </Table.Head>
         <Table.Body className="divide-y">
           {Object.keys(order).map((user) => (
@@ -59,121 +66,58 @@ export const OrderPage = () => {
               key={user}
             >
               <Table.Cell className="capitalize">{user}</Table.Cell>
-              <Table.Cell className="capitalize">
-                <TextInput
-                  type="number"
-                  min={0}
-                  sizing="sm"
-                  className="max-w-20"
-                  value={order[user].fool}
-                  onChange={(sandwitchCount) =>
-                    setOrder((prev) => ({
-                      ...prev,
-                      [user]: {
-                        ...prev[user],
-                        fool: sandwitchCount.target.value,
-                      },
-                    }))
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell className="capitalize">
-                <TextInput
-                  type="number"
-                  min={0}
-                  sizing="sm"
-                  className="max-w-20"
-                  value={order[user].ta3mia}
-                  onChange={(sandwitchCount) =>
-                    setOrder((prev) => ({
-                      ...prev,
-                      [user]: {
-                        ...prev[user],
-                        ta3mia: sandwitchCount.target.value,
-                      },
-                    }))
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell className="capitalize">
-                <TextInput
-                  type="number"
-                  min={0}
-                  sizing="sm"
-                  className="max-w-20"
-                  value={order[user].batates}
-                  onChange={(sandwitchCount) =>
-                    setOrder((prev) => ({
-                      ...prev,
-                      [user]: {
-                        ...prev[user],
-                        batates: sandwitchCount.target.value,
-                      },
-                    }))
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell className="capitalize">
-                <TextInput
-                  type="number"
-                  min={0}
-                  sizing="sm"
-                  className="max-w-20"
-                  value={order[user].koshary}
-                  onChange={(sandwitchCount) =>
-                    setOrder((prev) => ({
-                      ...prev,
-                      [user]: {
-                        ...prev[user],
-                        koshary: sandwitchCount.target.value,
-                      },
-                    }))
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell className="capitalize">
-                <TextInput
-                  type="number"
-                  min={0}
-                  sizing="sm"
-                  className="max-w-20"
-                  value={order[user].tagen}
-                  onChange={(sandwitchCount) =>
-                    setOrder((prev) => ({
-                      ...prev,
-                      [user]: {
-                        ...prev[user],
-                        tagen: sandwitchCount.target.value,
-                      },
-                    }))
-                  }
-                />
-              </Table.Cell>
+
+              {Object.keys(mainUserSandwitchs).map((mainSandwitch) => (
+                <Table.Cell key={mainSandwitch} className="capitalize">
+                  <TextInput
+                    type="number"
+                    min={0}
+                    sizing="sm"
+                    className="min-w-12 max-w-20"
+                    value={order[user][mainSandwitch]}
+                    onChange={(sandwichCount) =>
+                      setOrder((prev) => ({
+                        ...prev,
+                        [user]: {
+                          ...prev[user],
+                          [mainSandwitch]: sandwichCount.target.value,
+                        },
+                      }))
+                    }
+                  />
+                </Table.Cell>
+              ))}
             </Table.Row>
           ))}
 
+          {/* Total count sandwich */}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
             <Table.Cell className="whitespace-nowrap">Count</Table.Cell>
-            {Object.keys(UnitPrice).map((unit) => (
+            {Object.keys(unitPrice).map((unit) => (
               <Table.Cell key={unit} className="whitespace-nowrap">
                 {handleAllOfKind(unit)}
               </Table.Cell>
             ))}
           </Table.Row>
 
+          {/* Total unit sandwich price */}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
-            <Table.Cell className="whitespace-nowrap">Unit price</Table.Cell>
-            {Object.keys(UnitPrice).map((unit) => (
+            <Table.Cell className="whitespace-nowrap">Column price</Table.Cell>
+            {Object.keys(unitPrice).map((unit) => (
               <Table.Cell key={unit} className="whitespace-nowrap">
-                {handleAllOfKind(unit) * UnitPrice[unit]}
+                {handleAllOfKind(unit) * unitPrice[unit]}
               </Table.Cell>
             ))}
           </Table.Row>
 
+          {/* Total Receipt */}
           <Table.Row className="!bg-red-500 dark:!bg-red-700 border-t border-gray-300 text-white dark:border-white text-base font-semibold">
             <Table.Cell className="whitespace-nowrap">Total</Table.Cell>
-            <Table.Cell className="text-center" colSpan="5">
-              {handleHello()} LE
+            <Table.Cell
+              className="text-center"
+              colSpan={Object.keys(mainUserSandwitchs)?.length}
+            >
+              {handleTotalReceipt()} LE
             </Table.Cell>
           </Table.Row>
         </Table.Body>

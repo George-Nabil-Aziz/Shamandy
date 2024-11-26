@@ -16,7 +16,7 @@ export const History = () => {
       <p>06-10-2024: Adding table orders with names</p>
       <p>06-10-2024: Prod deploy V.2</p>
       <p>20-11-2024: Koshary, Tagen</p>
-      <p>26-10-2024: Add total sandwitchs count, total price</p>
+      <p>26-10-2024: Add total sandwichs count, total price</p>
       <p>00-10-2024: </p>
       <p></p>
 
@@ -34,10 +34,10 @@ export const History = () => {
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
       <h2>-</h2>
-      <h2>-User can sign in and put his preferd sandwitches</h2>
+      <h2>-User can sign in and put his preferd sandwiches</h2>
       <h2>
         -User elly rai7 yeshtery can open table and put all the preferd other
-        users sandwitches
+        users sandwiches
       </h2>
     </div>
   );

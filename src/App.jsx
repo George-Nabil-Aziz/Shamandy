@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // UI
-import { useScreenSize } from "/src";
+import { useScreenSize, AppProvider } from "/src";
 
 // Components
 import { routes } from "./routes";
@@ -17,5 +17,9 @@ export default function App() {
   // Router
   const router = createBrowserRouter(routes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
+  );
 }
