@@ -1,13 +1,3 @@
-// React
-import { Outlet } from "react-router-dom";
-
-// Components
-import { Error404Page } from "../pages/404";
-import { MainLayout } from "../layouts";
-import { MainPage } from "../pages";
-import { OrderPage } from "../pages/order-table";
-import { History } from "../pages/history";
-
 // React Icons
 import { HiHome } from "react-icons/hi";
 import { GiTurtle } from "react-icons/gi";
@@ -15,6 +5,15 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { GiSandwich } from "react-icons/gi";
 import { BsBackpack2 } from "react-icons/bs";
 import { SiHomebridge } from "react-icons/si";
+import { MdOutlineAddComment, MdOutlineAdd } from "react-icons/md";
+
+// Components
+import { Error404Page } from "../pages/404";
+import { MainLayout } from "../layouts";
+import { MainPage } from "../pages";
+import { OrderPage } from "../pages/order-table";
+import { History } from "../pages/history";
+import { Create } from "../pages/create";
 
 export const routes = [
   {
@@ -45,7 +44,6 @@ export const routes = [
           };
         },
       },
-      // @TODO: Add when needed
       {
         path: "history",
         element: <History />,
@@ -55,6 +53,18 @@ export const routes = [
             bcIcon: CiDeliveryTruck,
             jtTitle: "Here you can reserve your Shamandy order",
             jtIcon: GiSandwich,
+          };
+        },
+      },
+      {
+        path: "create",
+        element: <Create />,
+        loader() {
+          return {
+            bcLabel: "Create",
+            bcIcon: MdOutlineAdd,
+            jtTitle: "Here you can more columns to table",
+            jtIcon: MdOutlineAddComment,
           };
         },
       },

@@ -13,31 +13,31 @@ import {
 
 export const OrderPage = () => {
   // State
-  const [sandwitchCount, setSandwitchCount] = useState(0);
-  const [sandwitchKind, setSandwitchKind] = useState(1);
+  const [sandwichCount, setSandwichCount] = useState(0);
+  const [sandwichKind, setSandwichKind] = useState(1);
 
-  useEffect(() => setSandwitchKind("fool"), []);
+  useEffect(() => setSandwichKind("fool"), []);
 
   return (
     <div className="flex items-center gap-4">
       I will get
       <TextInput
-        value={sandwitchCount}
+        value={sandwichCount}
         type="number"
         min={0}
-        onChange={(num) => setSandwitchCount(num.target.value)}
+        onChange={(num) => setSandwichCount(num.target.value)}
       />
-      sandwitch
+      sandwich
       <Select
-        id="sandwitch"
+        id="sandwich"
         required
-        onChange={(num) => setSandwitchKind(num.target.value)}
+        onChange={(num) => setSandwichKind(num.target.value)}
       >
-        {Object.keys(UnitPrice).map((sandwitch) => (
-          <option key={sandwitch}>{sandwitch}</option>
+        {Object.keys(UnitPrice).map((sandwich) => (
+          <option key={sandwich}>{sandwich}</option>
         ))}
       </Select>
-      = {sandwitchCount * UnitPrice[sandwitchKind]}
+      = {sandwichCount * UnitPrice[sandwichKind]}
     </div>
   );
 };
