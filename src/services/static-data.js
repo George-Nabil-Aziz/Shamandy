@@ -22,7 +22,6 @@ export const mainSandwichs = {
   ta3mia: 0,
   batates: 0,
   koshary: 0,
-  tagen: 0,
 };
 
 export const PreferencesUser = {
@@ -40,5 +39,4 @@ export const UnitPrice = {
   ta3mia: 8,
   batates: 12,
   koshary: 25,
-  tagen: 0,
 };
