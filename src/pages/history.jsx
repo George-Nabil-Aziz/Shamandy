@@ -18,7 +18,8 @@ export const History = () => {
       <p>20-11-2024: Koshary, Tagen</p>
       <p>26-11-2024: Add total sandwichs count, total price</p>
       <p>03-12-2024: Netlify 404 Fix</p>
-      <p>00-10-2024: </p>
+      <p>03-12-2024: End sprints/1</p>
+      <p>00-00-2024: </p>
       <p></p>
 
       <hr />
