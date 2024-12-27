@@ -55,7 +55,7 @@ export const OrderPage = () => {
       <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Name</Table.HeadCell>
-          {Object.keys(mainUserSandwitchs).map((mainSandwitch) => (
+          {Object.keys(Object.values(order)[0]).map((mainSandwitch) => (
             <Table.HeadCell>{mainSandwitch}</Table.HeadCell>
           ))}
         </Table.Head>
@@ -66,8 +66,7 @@ export const OrderPage = () => {
               key={user}
             >
               <Table.Cell className="capitalize">{user}</Table.Cell>
-
-              {Object.keys(mainUserSandwitchs).map((mainSandwitch) => (
+              {Object.keys(Object.values(order)[0]).map((mainSandwitch) => (
                 <Table.Cell key={mainSandwitch} className="capitalize">
                   <TextInput
                     type="number"
@@ -141,9 +140,12 @@ export const OrderPage = () => {
               icon="ic:outline-cloud-download"
               className="cursor-pointer"
               outline
-              onClick={() =>
-                setOrder(JSON.parse(localStorage.getItem("shamandy")))
-              }
+              onClick={() => {
+                setOrder(JSON.parse(localStorage.getItem("shamandy")));
+                setUnitPrice(
+                  JSON.parse(localStorage.getItem("shamandy-unit-price"))
+                );
+              }}
             />
           </>
         )}
@@ -153,6 +155,10 @@ export const OrderPage = () => {
           className="cursor-pointer"
           onClick={() => {
             localStorage.setItem("shamandy", JSON.stringify(order));
+            localStorage.setItem(
+              "shamandy-unit-price",
+              JSON.stringify(unitPrice)
+            );
             handleShowFullButton();
           }}
         />
