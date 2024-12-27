@@ -5,11 +5,19 @@ import { useContext, useState } from "react";
 import { TextInput } from "flowbite-react";
 import { AppContext, AppButton } from "/src";
 
+// React icons
+import { SiBurgerking } from "react-icons/si";
+import { MdOutlineRestaurant } from "react-icons/md";
+import { FaMoneyBill1Wave } from "react-icons/fa6";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { FaSnowman } from "react-icons/fa";
+import { FaRegSmileBeam } from "react-icons/fa";
+
 export const Create = () => {
   // Context
   const {
-    mainUserSandwitchs,
-    setMainUserSandwitchs,
+    mainUserSandwichs,
+    setMainUserSandwichs,
     usersData,
     setUsersData,
     unitPrice,
@@ -17,9 +25,9 @@ export const Create = () => {
   } = useContext(AppContext);
 
   // State
-  const [newLabel, setNewLabel] = useState();
-  const [newLabelPrice, setNewLabelPrice] = useState(0);
-  const [newPerson, setNewPerson] = useState();
+  const [newLabel, setNewLabel] = useState("");
+  const [newLabelPrice, setNewLabelPrice] = useState("");
+  const [newPerson, setNewPerson] = useState("");
 
   return (
     <div className="space-y-4">
@@ -27,20 +35,28 @@ export const Create = () => {
       <TextInput
         onChange={(text) => setNewLabel(text.currentTarget.value)}
         value={newLabel}
+        placeholder="Food name ..."
+        icon={SiBurgerking}
+        rightIcon={MdOutlineRestaurant}
+        // addon="Ymmy"
       />
       <p>Do you know it's price ?</p>
       <TextInput
         type="number"
         min={0}
         disabled={!newLabel}
-        onChange={(text) => setNewLabelPrice(text.currentTarget.value)}
+        onChange={(text) => setNewLabelPrice(+text.currentTarget.value)}
         value={newLabelPrice}
+        placeholder="0"
+        icon={FaMoneyBill1Wave}
+        rightIcon={RiMoneyDollarCircleLine}
+        // addon="$"
       />
       <AppButton
         label="Save"
         icon="basil:save-outline"
         onClick={() => {
-          setMainUserSandwitchs((prev) => ({
+          setMainUserSandwichs((prev) => ({
             ...prev,
             [newLabel]: 0,
           }));
@@ -71,6 +87,10 @@ export const Create = () => {
       <TextInput
         onChange={(text) => setNewPerson(text.currentTarget.value)}
         value={newPerson}
+        placeholder="Person name ..."
+        icon={FaSnowman}
+        rightIcon={FaRegSmileBeam}
+        // addon="Bro"
       />
       <AppButton
         label="Save"
@@ -79,7 +99,7 @@ export const Create = () => {
           newPerson &&
             setUsersData((prev) => ({
               ...prev,
-              [newPerson]: mainUserSandwitchs,
+              [newPerson]: mainUserSandwichs,
             }));
           setNewPerson("");
         }}

@@ -10,8 +10,8 @@ import { TextInput, Label, Select, Table } from "flowbite-react";
 export const OrderPage = () => {
   // Context
   const {
-    mainUserSandwitchs,
-    setMainUserSandwitchs,
+    mainUserSandwichs,
+    setMainUserSandwichs,
     usersData,
     setUsersData,
     unitPrice,
@@ -55,8 +55,8 @@ export const OrderPage = () => {
       <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Name</Table.HeadCell>
-          {Object.keys(Object.values(order)[0]).map((mainSandwitch) => (
-            <Table.HeadCell>{mainSandwitch}</Table.HeadCell>
+          {Object.keys(Object.values(order)[0]).map((mainSandwich) => (
+            <Table.HeadCell key={mainSandwich}>{mainSandwich}</Table.HeadCell>
           ))}
         </Table.Head>
         <Table.Body className="divide-y">
@@ -66,20 +66,20 @@ export const OrderPage = () => {
               key={user}
             >
               <Table.Cell className="capitalize">{user}</Table.Cell>
-              {Object.keys(Object.values(order)[0]).map((mainSandwitch) => (
-                <Table.Cell key={mainSandwitch} className="capitalize">
+              {Object.keys(Object.values(order)[0]).map((mainSandwich) => (
+                <Table.Cell key={mainSandwich} className="capitalize">
                   <TextInput
                     type="number"
                     min={0}
                     sizing="sm"
                     className="min-w-12 max-w-20"
-                    value={order[user][mainSandwitch]}
+                    value={order[user][mainSandwich]}
                     onChange={(sandwichCount) =>
                       setOrder((prev) => ({
                         ...prev,
                         [user]: {
                           ...prev[user],
-                          [mainSandwitch]: sandwichCount.target.value,
+                          [mainSandwich]: +sandwichCount.target.value,
                         },
                       }))
                     }
@@ -92,7 +92,7 @@ export const OrderPage = () => {
           {/* Total count sandwich */}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
             <Table.Cell className="whitespace-nowrap">Count</Table.Cell>
-            {Object.keys(unitPrice).map((unit) => (
+            {Object.keys(Object.values(order)[0]).map((unit) => (
               <Table.Cell key={unit} className="whitespace-nowrap">
                 {handleAllOfKind(unit)}
               </Table.Cell>
@@ -102,7 +102,7 @@ export const OrderPage = () => {
           {/* Total unit sandwich price */}
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
             <Table.Cell className="whitespace-nowrap">Column price</Table.Cell>
-            {Object.keys(unitPrice).map((unit) => (
+            {Object.keys(Object.values(order)[0]).map((unit) => (
               <Table.Cell key={unit} className="whitespace-nowrap">
                 {handleAllOfKind(unit) * unitPrice[unit]}
               </Table.Cell>
@@ -114,7 +114,7 @@ export const OrderPage = () => {
             <Table.Cell className="whitespace-nowrap">Total</Table.Cell>
             <Table.Cell
               className="text-center"
-              colSpan={Object.keys(mainUserSandwitchs)?.length}
+              colSpan={Object.keys(unitPrice)?.length}
             >
               {handleTotalReceipt()} LE
             </Table.Cell>
