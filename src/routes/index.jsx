@@ -5,7 +5,12 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { GiSandwich } from "react-icons/gi";
 import { BsBackpack2 } from "react-icons/bs";
 import { SiHomebridge } from "react-icons/si";
-import { MdOutlineAddComment, MdOutlineAdd } from "react-icons/md";
+import {
+  MdOutlineAddComment,
+  MdOutlineAdd,
+  MdEditSquare,
+} from "react-icons/md";
+import { RiEdit2Fill } from "react-icons/ri";
 
 // Components
 import { Error404Page } from "../pages/404";
@@ -14,6 +19,7 @@ import { MainPage } from "../pages";
 import { OrderPage } from "../pages/order-table";
 import { History } from "../pages/history";
 import { Create } from "../pages/create";
+import { Edit } from "../pages/edit";
 
 export const routes = [
   {
@@ -63,8 +69,20 @@ export const routes = [
           return {
             bcLabel: "Create",
             bcIcon: MdOutlineAdd,
-            jtTitle: "Here you can more columns to table",
+            jtTitle: "Here you can add more columns to table",
             jtIcon: MdOutlineAddComment,
+          };
+        },
+      },
+      {
+        path: "edit",
+        element: <Edit />,
+        loader() {
+          return {
+            bcLabel: "Edit",
+            bcIcon: RiEdit2Fill,
+            jtTitle: "Here you can edit food",
+            jtIcon: MdEditSquare,
           };
         },
       },

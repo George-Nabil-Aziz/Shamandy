@@ -10,15 +10,15 @@ import {
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [mainUserSandwitchs, setMainUserSandwitchs] = useState(mainSandwichs);
+  const [mainUserSandwichs, setMainUserSandwichs] = useState(mainSandwichs);
   const [usersData, setUsersData] = useState(PreferencesUser);
   const [unitPrice, setUnitPrice] = useState(UnitPrice);
 
   return (
     <AppContext.Provider
       value={{
-        mainUserSandwitchs,
-        setMainUserSandwitchs,
+        mainUserSandwichs,
+        setMainUserSandwichs,
         usersData,
         setUsersData,
         unitPrice,
