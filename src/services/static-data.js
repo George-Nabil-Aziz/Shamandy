@@ -9,7 +9,7 @@ export const StaticData = () => {
   // TODO: Static data
   const data = [
     { path: "/", label: "Home", icon: HiChartPie },
-    { path: "/sayed", label: "Sayed", icon: HiUser },
+    { path: "/sayed", label: "No Sayed", icon: HiUser },
     // @TODO: Add when needed
     // { path: "/history", label: "History", icon: FaHistory },
     { path: "/create", label: "Create", icon: MdOutlineAddCircle },
@@ -41,4 +41,15 @@ export const UnitPrice = {
   ta3mia: 8,
   batates: 12,
   koshary: 25,
+};
+
+export const FirebaseDabaseIdName = {
+  order: {
+    collection: "shamandy-order",
+    id: "order-static-id",
+  },
+  unitPrice: {
+    collection: "shamandy-unit-price",
+    id: "unit-price-static-id",
+  },
 };
