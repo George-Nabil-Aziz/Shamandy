@@ -30,9 +30,12 @@ export const OrderPage = () => {
   };
 
   const handleShowFullButton = () => {
-    if (localStorage.getItem("shamandy")) {
+    if (
+      localStorage.getItem("shamandy") &&
+      localStorage.getItem("shamandy-unit-price")
+    )
       setShowFullButtons(true);
-    } else setShowFullButtons(false);
+    else setShowFullButtons(false);
   };
 
   const handleTotalReceipt = () => {
@@ -132,6 +135,7 @@ export const OrderPage = () => {
               className="cursor-pointer"
               onClick={() => {
                 localStorage.removeItem("shamandy");
+                localStorage.removeItem("shamandy-unit-price");
                 handleShowFullButton();
               }}
             />
