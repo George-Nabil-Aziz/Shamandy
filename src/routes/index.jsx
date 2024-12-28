@@ -45,7 +45,7 @@ export const routes = [
           return {
             bcLabel: "Sayed",
             bcIcon: BsBackpack2,
-            jtTitle: "Here you can pay to sayed 2 pounds for torshy",
+            jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
             jtIcon: GiTurtle,
           };
         },
@@ -57,7 +57,7 @@ export const routes = [
           return {
             bcLabel: "History",
             bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Shamandy order",
+            jtTitle: "Here you can reserve your Elprince order",
             jtIcon: GiSandwich,
           };
         },
