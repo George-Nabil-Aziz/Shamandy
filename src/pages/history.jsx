@@ -21,9 +21,9 @@ export const History = () => {
       <p>03-12-2024: End sprints/1</p>
       <p>27-12-2024: Fixing save localstorage</p>
       <p>27-12-2024: Adding edit module</p>
+      <p>28-12-2024: Adding firebase cloud server</p>
+      <p>28-12-2024: Adding variables to firebase </p>
       <p>28-12-2024: End sprints/2</p>
-      <p>00-00-2024: Adding firebase cloud server</p>
-      <p>00-00-2024: </p>
       <p></p>
 
       <hr />
