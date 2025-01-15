@@ -1,6 +1,6 @@
 export const MainPage = () => (
   <>
-    <p>Shamandy is better than el Prince</p>
-    <img className="w-full" src="/fool.png" alt="Fool" />
+    <p>Elprince is better than Shamandy</p>
+    <img className="w-full" src="/falafel.jpg" alt="Ta3mia" />
   </>
 );
