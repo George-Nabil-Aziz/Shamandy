@@ -33,7 +33,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
         <Navbar.Brand as={Link} to="/">
           <img src="/favicon.png" className="mr-3 h-6 sm:h-9" alt="Ta3mia" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Elprince
+            Gad™
           </span>
         </Navbar.Brand>
       </div>
