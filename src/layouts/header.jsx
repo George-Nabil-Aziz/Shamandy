@@ -1,5 +1,5 @@
 // React
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // UI
 import { AppButton, StaticData } from "/src";
@@ -13,6 +13,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
   // Hook
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <Navbar
@@ -55,9 +56,9 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
               name@flowbite.com
             </span>
           </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/login")}>
+            Log in
+          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown>

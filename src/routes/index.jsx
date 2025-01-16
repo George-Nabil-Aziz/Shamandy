@@ -1,7 +1,7 @@
 // React Icons
 import { HiHome } from "react-icons/hi";
 import { GiTurtle } from "react-icons/gi";
-import { CiDeliveryTruck } from "react-icons/ci";
+import { CiDeliveryTruck, CiLogin } from "react-icons/ci";
 import { GiSandwich } from "react-icons/gi";
 import { BsBackpack2 } from "react-icons/bs";
 import { SiHomebridge } from "react-icons/si";
@@ -11,6 +11,7 @@ import {
   MdEditSquare,
 } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
+import { FiLogIn } from "react-icons/fi";
 
 // Components
 import { Error404Page } from "../pages/404";
@@ -20,6 +21,7 @@ import { OrderPage } from "../pages/order-table";
 import { History } from "../pages/history";
 import { Create } from "../pages/create";
 import { Edit } from "../pages/edit";
+import { Login } from "../pages/login";
 
 export const routes = [
   {
@@ -83,6 +85,18 @@ export const routes = [
             bcIcon: RiEdit2Fill,
             jtTitle: "Here you can edit food",
             jtIcon: MdEditSquare,
+          };
+        },
+      },
+      {
+        path: "login",
+        element: <Login />,
+        loader() {
+          return {
+            bcLabel: "Login",
+            bcIcon: CiLogin,
+            jtTitle: "Here you can login",
+            jtIcon: FiLogIn,
           };
         },
       },

@@ -24,7 +24,8 @@ export const History = () => {
       <p>28-12-2024: Adding firebase cloud server</p>
       <p>28-12-2024: Adding variables to firebase </p>
       <p>28-12-2024: End sprints/2 (Elprince)</p>
-      <p>16-01-2025: Enhance profile icon</p>
+      <p>15-01-2025: Enhance profile icon</p>
+      <p>15-01-2025: Adding login page</p>
       <p>Will Be: Adding admin, user Login</p>
 
       <hr />

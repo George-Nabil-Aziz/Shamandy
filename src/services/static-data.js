@@ -4,6 +4,7 @@ import { GiDonkey } from "react-icons/gi";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 
 export const StaticData = () => {
   // TODO: Static data
@@ -14,6 +15,7 @@ export const StaticData = () => {
     // { path: "/history", label: "History", icon: FaHistory },
     { path: "/create", label: "Create", icon: MdOutlineAddCircle },
     { path: "/edit", label: "Edit", icon: FaEdit },
+    { path: "/login", label: "Login", icon: FaSignInAlt },
     { path: "/donkey", label: "#", icon: GiDonkey },
   ];
   return { data };
