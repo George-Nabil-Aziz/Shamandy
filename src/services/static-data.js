@@ -1,3 +1,9 @@
+// React
+import { useContext } from "react";
+
+// Core
+import { AppContext } from "/src";
+
 // React icons
 import { HiChartPie, HiUser } from "react-icons/hi";
 import { GiDonkey } from "react-icons/gi";
@@ -7,15 +13,38 @@ import { FaEdit } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
 
 export const StaticData = () => {
+  // Context
+  const {
+    mainUserSandwichs,
+    setMainUserSandwichs,
+    usersData,
+    setUsersData,
+    unitPrice,
+    setUnitPrice,
+    firebaseDabaseIdName,
+    setFirebaseDabaseIdName,
+    firebaseUserData,
+    setFirebaseUserData,
+  } = useContext(AppContext);
+
   // TODO: Static data
   const data = [
     { path: "/", label: "Home", icon: HiChartPie },
-    { path: "/sayed", label: "No Sayed", icon: HiUser },
+    { path: "/sayed", label: "No Sayed", icon: HiUser, encrypted: true },
     // @TODO: Add when needed
     // { path: "/history", label: "History", icon: FaHistory },
-    { path: "/create", label: "Create", icon: MdOutlineAddCircle },
-    { path: "/edit", label: "Edit", icon: FaEdit },
-    { path: "/login", label: "Login", icon: FaSignInAlt },
+    {
+      path: "/create",
+      label: "Create",
+      icon: MdOutlineAddCircle,
+      encrypted: true,
+    },
+    { path: "/edit", label: "Edit", icon: FaEdit, encrypted: true },
+    {
+      path: "/login",
+      label: firebaseUserData?.uid ? "Logout" : "Login",
+      icon: FaSignInAlt,
+    },
     { path: "/donkey", label: "#", icon: GiDonkey },
   ];
   return { data };
