@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { AppContext } from "/src";
 
 // React icons
-import { HiChartPie, HiUser } from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
+import { HiUser } from "react-icons/hi";
 import { GiDonkey } from "react-icons/gi";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
@@ -29,7 +30,7 @@ export const StaticData = () => {
 
   // TODO: Static data
   const data = [
-    { path: "/", label: "Home", icon: HiChartPie },
+    { path: "/", label: "Home", icon: HiHome },
     { path: "/sayed", label: "No Sayed", icon: HiUser, encrypted: true },
     // @TODO: Add when needed
     // { path: "/history", label: "History", icon: FaHistory },

@@ -58,6 +58,14 @@ export const Login = () => {
           );
           const user = userCredential.user;
           await updateProfile(user, formData);
+          // await setDoc(doc(db, "users", user.uid), {
+          //   name,
+          //   email,
+          //   phone, // Storing phone number
+          //   uid: user.uid,
+          //   createdAt: new Date(),
+          // });
+          // console.log("User signed up and phone stored:", user);
 
           alert("Account created successfully!");
         } else {
@@ -86,9 +94,31 @@ export const Login = () => {
   };
 
   return (
-    <Card className="max-w-sm">
+    <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
-        <AppButton type="button" label="Log out" onClick={handleLogout} />
+        <div className="text-lg">
+          {firebaseUserData?.displayName && (
+            <div>Name: {firebaseUserData?.displayName}</div>
+          )}
+          {firebaseUserData?.email && (
+            <div className="break-words">Email: {firebaseUserData?.email}</div>
+          )}
+          {"emailVerified" in (firebaseUserData || {}) && (
+            <div>
+              Verified: {firebaseUserData?.emailVerified ? "Yes" : "No"}
+            </div>
+          )}
+          {firebaseUserData?.metadata?.creationTime && (
+            <div>Created at: {firebaseUserData?.metadata?.creationTime}</div>
+          )}
+          {firebaseUserData?.metadata?.lastSignInTime && (
+            <div>
+              Last login at: {firebaseUserData?.metadata?.lastSignInTime}
+            </div>
+          )}
+          {firebaseUserData?.uid && <div>Id: {firebaseUserData?.uid}</div>}
+          <AppButton type="button" label="Logout" onClick={handleLogout} />
+        </div>
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleAuth}>
           {isSignUp && (
@@ -171,7 +201,7 @@ export const Login = () => {
 
           <AppButton
             type="submit"
-            label={isSignUp ? "Sign Up" : "Log In"}
+            label={isSignUp ? "Signup" : "Login"}
             disabled={
               isSignUp && formData?.password !== formData?.confirmPassword
             }
@@ -179,7 +209,7 @@ export const Login = () => {
           <div className="flex items-center gap-2">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
             <div className="underline" onClick={() => setIsSignUp(!isSignUp)}>
-              {isSignUp ? "Log In" : "Sign Up"}
+              {isSignUp ? "Login" : "Signup"}
             </div>
           </div>
         </form>

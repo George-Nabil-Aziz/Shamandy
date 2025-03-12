@@ -66,32 +66,32 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
             />
           }
         >
-          {firebaseUserData?.displayName && (
-            <Dropdown.Header>
-              <span className="block text-sm">
-                {firebaseUserData?.displayName}
-              </span>
-            </Dropdown.Header>
-          )}
-
-          {firebaseUserData?.email && (
-            <Dropdown.Header>
-              <span className="block truncate text-sm font-medium">
-                firebaseUserData?.email
-              </span>
-            </Dropdown.Header>
+          {Object.keys(firebaseUserData || {})?.map(
+            (key) =>
+              ["displayName", "email"].includes(key) && (
+                <Dropdown.Header>
+                  <span className="block truncate text-sm font-medium">
+                    {String(firebaseUserData[key])}
+                  </span>
+                </Dropdown.Header>
+              )
           )}
 
           {!firebaseUserData?.uid && (
             <Dropdown.Item onClick={() => navigate("/login")}>
-              Log in
+              Login
             </Dropdown.Item>
           )}
 
           {firebaseUserData?.uid && (
             <>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
+              <Dropdown.Item
+                onClick={handleLogout}
+                className="!text-red-500 font-black"
+              >
+                Logout
+              </Dropdown.Item>
             </>
           )}
         </Dropdown>
