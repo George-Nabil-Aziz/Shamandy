@@ -101,16 +101,19 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
         <Navbar.Toggle className="!block md:!hidden" />
       </div>
       <Navbar.Collapse className="lg:!hidden">
-        {data.map(({ label, path, icon }) => (
-          <Navbar.Link
-            key={path}
-            as={Link}
-            to={path}
-            active={location.pathname === path}
-          >
-            {label}
-          </Navbar.Link>
-        ))}
+        {data.map(
+          ({ label, path, icon, encrypted }) =>
+            (!encrypted || firebaseUserData?.uid) && (
+              <Navbar.Link
+                key={path}
+                as={Link}
+                to={path}
+                active={location.pathname === path}
+              >
+                {label}
+              </Navbar.Link>
+            )
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
