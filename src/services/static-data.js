@@ -47,7 +47,9 @@ export const StaticData = () => {
       icon: FaSignInAlt,
     },
     { path: "/donkey", label: "#", icon: GiDonkey },
-  ];
+  ].filter((singleData) =>
+    firebaseUserData?.uid ? singleData : !singleData?.encrypted
+  );
   return { data };
 };
 
