@@ -39,20 +39,17 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          {data.map(
-            ({ label, path, icon, encrypted }) =>
-              (!encrypted || firebaseUserData?.uid) && (
-                <Sidebar.Item
-                  key={path}
-                  as={Link}
-                  to={path}
-                  icon={icon}
-                  active={location.pathname === path}
-                >
-                  {label}
-                </Sidebar.Item>
-              )
-          )}
+          {data.map(({ label, path, icon }) => (
+            <Sidebar.Item
+              key={path}
+              as={Link}
+              to={path}
+              icon={icon}
+              active={location.pathname === path}
+            >
+              {label}
+            </Sidebar.Item>
+          ))}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
