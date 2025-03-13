@@ -26,6 +26,7 @@ export const History = () => {
       <p>28-12-2024: End sprints/2 (Elprince)</p>
       <p>15-01-2025: Enhance profile icon</p>
       <p>15-01-2025: Adding login page</p>
+      <p>12-03-2025: Separated login page</p>
       <p>Will Be: Adding admin, user Login</p>
 
       <hr />
@@ -42,7 +43,7 @@ export const History = () => {
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
       <h2>-</h2>
-      <h2>-User can sign in and put his preferd sandwiches</h2>
+      <h2>-User can signin and put his preferd sandwiches</h2>
       <h2>
         -User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches

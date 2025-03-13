@@ -1,8 +1,9 @@
 // React
+import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-// UI
-import { AppButton, StaticData } from "/src";
+// Core
+import { AppButton, StaticData, AppContext } from "/src";
 
 // Flowbite
 import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
@@ -10,6 +11,21 @@ import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
 export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
   // TODO: Static data
   const { data } = StaticData();
+
+  // Context
+  const {
+    mainUserSandwichs,
+    setMainUserSandwichs,
+    usersData,
+    setUsersData,
+    unitPrice,
+    setUnitPrice,
+    firebaseDabaseIdName,
+    setFirebaseDabaseIdName,
+    firebaseUserData,
+    setFirebaseUserData,
+    handleLogout,
+  } = useContext(AppContext);
 
   // Hook
   const location = useLocation();
@@ -50,17 +66,34 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
             />
           }
         >
-          <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              name@flowbite.com
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item onClick={() => navigate("/login")}>
-            Log in
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          {Object.keys(firebaseUserData || {})?.map(
+            (key) =>
+              ["displayName", "email"].includes(key) && (
+                <Dropdown.Header>
+                  <span className="block truncate text-sm font-medium">
+                    {String(firebaseUserData[key])}
+                  </span>
+                </Dropdown.Header>
+              )
+          )}
+
+          {!firebaseUserData?.uid && (
+            <Dropdown.Item onClick={() => navigate("/login")}>
+              Login
+            </Dropdown.Item>
+          )}
+
+          {firebaseUserData?.uid && (
+            <>
+              <Dropdown.Divider />
+              <Dropdown.Item
+                onClick={handleLogout}
+                className="!text-red-500 font-black"
+              >
+                Logout
+              </Dropdown.Item>
+            </>
+          )}
         </Dropdown>
 
         <DarkThemeToggle />

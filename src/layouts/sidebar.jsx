@@ -1,8 +1,9 @@
 // React
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 // UI
-import { StaticData } from "/src";
+import { StaticData, AppContext } from "/src";
 
 // Flowbite
 import { Sidebar } from "flowbite-react";
@@ -14,6 +15,20 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
   // Hook
   const location = useLocation();
 
+  // Context
+  const {
+    mainUserSandwichs,
+    setMainUserSandwichs,
+    usersData,
+    setUsersData,
+    unitPrice,
+    setUnitPrice,
+    firebaseDabaseIdName,
+    setFirebaseDabaseIdName,
+    firebaseUserData,
+    setFirebaseUserData,
+  } = useContext(AppContext);
+
   return (
     <Sidebar
       aria-label="Sidebar with logo branding example"
@@ -23,17 +38,20 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          {data.map(({ label, path, icon }) => (
-            <Sidebar.Item
-              key={path}
-              as={Link}
-              to={path}
-              icon={icon}
-              active={location.pathname === path}
-            >
-              {label}
-            </Sidebar.Item>
-          ))}
+          {data.map(
+            ({ label, path, icon, encrypted }) =>
+              (!encrypted || firebaseUserData?.uid) && (
+                <Sidebar.Item
+                  key={path}
+                  as={Link}
+                  to={path}
+                  icon={icon}
+                  active={location.pathname === path}
+                >
+                  {label}
+                </Sidebar.Item>
+              )
+          )}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

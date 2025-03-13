@@ -1,5 +1,5 @@
 // React Icons
-import { HiHome } from "react-icons/hi";
+import { HiChartPie } from "react-icons/hi";
 import { GiTurtle } from "react-icons/gi";
 import { CiDeliveryTruck, CiLogin } from "react-icons/ci";
 import { GiSandwich } from "react-icons/gi";
@@ -30,7 +30,7 @@ export const routes = [
     loader() {
       return {
         bcLabel: "Home",
-        bcIcon: HiHome,
+        bcIcon: HiChartPie,
         jtTitle: "Hungry ?",
         jtIcon: SiHomebridge,
       };
@@ -93,9 +93,9 @@ export const routes = [
         element: <Login />,
         loader() {
           return {
-            bcLabel: "Login",
+            bcLabel: "Auth",
             bcIcon: CiLogin,
-            jtTitle: "Here you can login",
+            jtTitle: "Here you can auth",
             jtIcon: FiLogIn,
           };
         },
