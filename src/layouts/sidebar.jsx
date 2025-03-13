@@ -27,6 +27,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    handleLogout,
   } = useContext(AppContext);
 
   return (
