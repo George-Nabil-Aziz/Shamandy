@@ -10,7 +10,7 @@ import { TextInput, Table } from "flowbite-react";
 // Firebase
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-export const OrderPage = () => {
+export const Receipt = () => {
   // Context
   const {
     mainUserSandwichs,
@@ -223,6 +223,27 @@ export const OrderPage = () => {
               <Table.Cell className="capitalize">
                 {user?.displayName}
               </Table.Cell>
+              {/* <TextInput
+                  type="number"
+                  min={0}
+                  sizing="sm"
+                  className="min-w-12 max-w-20"
+                  value={order[user][mainSandwich]}
+                  onChange={(sandwichCount) =>
+                    setOrder((prev) => ({
+                      ...prev,
+                      [user]: {
+                        ...prev[user],
+                        [mainSandwich]: +sandwichCount.target.value,
+                        },
+                        }))
+                        }
+                        /> */}
+              {user?.order?.map((userOrder) => (
+                <Table.Cell key={userOrder?.email} className="capitalize">
+                  {userOrder?.count}
+                </Table.Cell>
+              ))}
               {/* {Object.keys(Object.values(order)[0]).map((mainSandwich) => (
                 <Table.Cell key={mainSandwich} className="capitalize">
                   <TextInput
