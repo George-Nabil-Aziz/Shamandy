@@ -156,24 +156,26 @@ export const Edit = () => {
             />
           </div>
 
-          <AppButton
-            label="Update"
-            icon="basil:save-outline"
-            className="cursor-pointer"
-            onClick={handleUpdate}
-            loading={loading}
-            disabled={loading}
-          />
+          <div className="flex gap-2">
+            <AppButton
+              label="Update"
+              icon="basil:save-outline"
+              className="cursor-pointer"
+              onClick={handleUpdate}
+              loading={loading}
+              disabled={loading}
+            />
 
-          <AppButton
-            label="Delete"
-            danger
-            icon="ic:baseline-delete-forever"
-            className="cursor-pointer"
-            onClick={handleDelete}
-            loading={loading}
-            disabled={loading}
-          />
+            <AppButton
+              label="Delete"
+              danger
+              icon="ic:baseline-delete-forever"
+              className="cursor-pointer"
+              onClick={handleDelete}
+              loading={loading}
+              disabled={loading}
+            />
+          </div>
         </>
       ) : (
         <div>Create food</div>
