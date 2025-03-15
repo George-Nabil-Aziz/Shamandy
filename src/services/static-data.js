@@ -35,8 +35,8 @@ export const StaticData = () => {
   const data = [
     { path: "/", label: "Home", icon: HiHome, role: [0, 1, 2] },
     {
-      path: "/sayed",
-      label: "No Sayed",
+      path: "/order",
+      label: "Order",
       icon: HiUser,
       encrypted: true,
       role: [1, 2],
