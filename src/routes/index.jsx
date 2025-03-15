@@ -33,9 +33,9 @@ export const routes = [
   {
     path: "/",
     element: (
-      <RouterProvider>
-        <MainLayout />
-      </RouterProvider>
+      // <RouterProvider>
+      <MainLayout />
+      // </RouterProvider>
     ),
     loader() {
       return {

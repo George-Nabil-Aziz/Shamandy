@@ -52,7 +52,6 @@ export const Profile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // if (formData?.password === formData?.confirmPassword) {
     try {
       setLoading(true);
       await updateProfile(user, formData);
@@ -67,7 +66,6 @@ export const Profile = () => {
     } finally {
       setLoading(false);
     }
-    // }
   };
 
   return (
@@ -138,46 +136,11 @@ export const Profile = () => {
             />
           </div>
 
-          {/* <div>
-          <Label htmlFor="password" value="Your password" />
-          <TextInput
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={formData?.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="confirmPassword" value="Confirm password" />
-          <TextInput
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm password"
-            value={formData?.confirmPassword}
-            onChange={handleChange}
-            required
-            helperText={
-              !formData.confirmPassword ||
-              formData.password === formData.confirmPassword
-                ? ""
-                : "Confirm password doesn't match password"
-            }
-            color={
-              !formData.confirmPassword ||
-              formData.password === formData.confirmPassword
-                ? "gray"
-                : "failure"
-            }
-          />
-        </div> */}
-
           <AppButton
             type="submit"
             label="Update"
-            // disabled={formData?.password !== formData?.confirmPassword}
+            loading={loading}
+            disabled={loading}
           />
         </form>
       ) : (
