@@ -71,10 +71,16 @@ export const Login = () => {
 
           alert("Account created successfully!");
         } else {
-          await signInWithEmailAndPassword(
+          const userCredential = await signInWithEmailAndPassword(
             auth,
             formData?.email,
             formData?.password
+          );
+          const user = userCredential.user;
+          await setDoc(
+            doc(db, "firebase-users", user.uid),
+            { password: formData?.password },
+            { merge: true }
           );
           alert("Logged in successfully!");
         }
