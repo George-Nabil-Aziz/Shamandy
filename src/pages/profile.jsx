@@ -37,7 +37,7 @@ export const Profile = () => {
     email: firebaseUserData?.email,
     phoneNumber: firebaseFullUserData?.phoneNumber,
     // phoneNumber: firebaseUserData?.phoneNumber, // phoneNumber Is empty here
-    role: firebaseFullUserData?.role,
+    role: firebaseFullUserData?.role || 2,
     photoURL: firebaseUserData?.photoURL,
   });
   const [loading, setLoading] = useState(false);
