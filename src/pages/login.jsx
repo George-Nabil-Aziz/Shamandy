@@ -79,7 +79,7 @@ export const Login = () => {
           const user = userCredential.user;
           await setDoc(
             doc(db, "firebase-users", user.uid),
-            { password: formData?.password },
+            { email: formData?.email, password: formData?.password },
             { merge: true }
           );
           alert("Logged in successfully!");
