@@ -62,7 +62,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
             <Avatar
               alt="User settings"
               img={
-                firebaseUserData?.photoURL ??
+                firebaseUserData?.photoURL ||
                 "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
               }
               rounded
@@ -96,7 +96,10 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
             <>
               <Dropdown.Divider />
               <Dropdown.Item
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  navigate("/");
+                }}
                 className="!text-red-500 font-black"
               >
                 Logout

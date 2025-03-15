@@ -40,6 +40,7 @@ export const Profile = () => {
     role: firebaseFullUserData?.role,
     photoURL: firebaseUserData?.photoURL,
   });
+  const [loading, setLoading] = useState(false);
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -51,8 +52,8 @@ export const Profile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // if (formData?.password === formData?.confirmPassword) {
     try {
+      setLoading(true);
       await updateProfile(user, formData);
       await setDoc(doc(db, "firebase-users", user.uid), formData, {
         merge: true,
@@ -62,8 +63,9 @@ export const Profile = () => {
       setEditMode(false);
     } catch (error) {
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
-    // }
   };
 
   return (
@@ -111,7 +113,11 @@ export const Profile = () => {
             <Label htmlFor="role" value="Select your role" />
             <Select id="role" onChange={handleChange} required>
               {Enums?.roles?.map((role) => (
-                <option key={role?.value} value={role?.value}>
+                <option
+                  key={role?.value}
+                  value={role?.value}
+                  selected={+formData?.role === role.value}
+                >
                   {role?.label}
                 </option>
               ))}
@@ -130,46 +136,11 @@ export const Profile = () => {
             />
           </div>
 
-          {/* <div>
-          <Label htmlFor="password" value="Your password" />
-          <TextInput
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={formData?.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="confirmPassword" value="Confirm password" />
-          <TextInput
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm password"
-            value={formData?.confirmPassword}
-            onChange={handleChange}
-            required
-            helperText={
-              !formData.confirmPassword ||
-              formData.password === formData.confirmPassword
-                ? ""
-                : "Confirm password doesn't match password"
-            }
-            color={
-              !formData.confirmPassword ||
-              formData.password === formData.confirmPassword
-                ? "gray"
-                : "failure"
-            }
-          />
-        </div> */}
-
           <AppButton
             type="submit"
             label="Update"
-            // disabled={formData?.password !== formData?.confirmPassword}
+            loading={loading}
+            disabled={loading}
           />
         </form>
       ) : (
@@ -178,6 +149,8 @@ export const Profile = () => {
             type="button"
             label="Edit My Profile"
             onClick={() => setEditMode(true)}
+            loading={loading}
+            disabled={loading}
           />
 
           {firebaseUserData?.displayName && (

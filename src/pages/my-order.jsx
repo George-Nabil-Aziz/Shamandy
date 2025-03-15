@@ -11,7 +11,7 @@ import {
   UnitPrice,
 } from "../services/static-data";
 
-export const OrderPage = () => {
+export const MyOrderPage = () => {
   // State
   const [sandwichCount, setSandwichCount] = useState(0);
   const [sandwichKind, setSandwichKind] = useState(1);

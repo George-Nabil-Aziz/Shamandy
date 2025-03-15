@@ -11,12 +11,15 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Label, TextInput } from "flowbite-react";
 
 export const UploadPhoto = () => {
+  // State
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const uploadImage = async () => {
     if (!image) return;
     try {
+      setLoading(true);
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
       const downloadURL = await getDownloadURL(imageRef);
@@ -24,6 +27,8 @@ export const UploadPhoto = () => {
     } catch (error) {
       alert(error.message);
       console.log("Hello", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,7 +43,13 @@ export const UploadPhoto = () => {
 
       <p>{url || "No URL"}</p>
 
-      <AppButton type="submit" label="Upload" onClick={uploadImage} />
+      <AppButton
+        type="submit"
+        label="Upload"
+        onClick={uploadImage}
+        loading={loading}
+        disabled={loading}
+      />
     </>
   );
 };

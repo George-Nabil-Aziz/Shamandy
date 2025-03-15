@@ -21,6 +21,19 @@ export const OrderPage = () => {
     setUnitPrice,
     firebaseDabaseIdName,
     setFirebaseDabaseIdName,
+
+    firebaseUserData,
+    setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
+    handleLogout,
   } = useContext(AppContext);
 
   // State
@@ -196,18 +209,21 @@ export const OrderPage = () => {
       <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Name</Table.HeadCell>
-          {Object.keys(Object.values(order)[0] || [])?.map((mainSandwich) => (
-            <Table.HeadCell key={mainSandwich}>{mainSandwich}</Table.HeadCell>
+          {firebaseAllItems?.map((item) => (
+            <Table.HeadCell key={item?.id}>{item?.name}</Table.HeadCell>
           ))}
         </Table.Head>
+
         <Table.Body className="divide-y">
-          {Object.keys(order).map((user) => (
+          {firebaseAllUsers?.map((user) => (
             <Table.Row
               className="bg-white dark:border-gray-700 dark:bg-gray-800"
-              key={user}
+              key={user?.displayName}
             >
-              <Table.Cell className="capitalize">{user}</Table.Cell>
-              {Object.keys(Object.values(order)[0]).map((mainSandwich) => (
+              <Table.Cell className="capitalize">
+                {user?.displayName}
+              </Table.Cell>
+              {/* {Object.keys(Object.values(order)[0]).map((mainSandwich) => (
                 <Table.Cell key={mainSandwich} className="capitalize">
                   <TextInput
                     type="number"
@@ -226,7 +242,7 @@ export const OrderPage = () => {
                     }
                   />
                 </Table.Cell>
-              ))}
+              ))} */}
             </Table.Row>
           ))}
 

@@ -33,9 +33,9 @@ export const routes = [
   {
     path: "/",
     element: (
-      <RouterProvider>
-        <MainLayout />
-      </RouterProvider>
+      // <RouterProvider>
+      <MainLayout />
+      // </RouterProvider>
     ),
     loader() {
       return {
@@ -51,11 +51,11 @@ export const routes = [
         element: <MainPage />,
       },
       {
-        path: "sayed",
+        path: "order",
         element: <OrderPage />,
         loader() {
           return {
-            bcLabel: "Sayed",
+            bcLabel: "Order",
             bcIcon: BsBackpack2,
             jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
             jtIcon: GiTurtle,

@@ -33,38 +33,52 @@ export const StaticData = () => {
 
   // TODO: Static data
   const data = [
-    { path: "/", label: "Home", icon: HiHome },
-    { path: "/sayed", label: "No Sayed", icon: HiUser, encrypted: true },
+    { path: "/", label: "Home", icon: HiHome, role: [0, 1, 2] },
+    {
+      path: "/order",
+      label: "Order",
+      icon: HiUser,
+      encrypted: true,
+      role: [1, 2],
+    },
     // @TODO: Add when needed
-    // { path: "/history", label: "History", icon: FaHistory },
+    // { path: "/history", label: "History", icon: FaHistory, role: [0, 1, 2] },
     {
       path: "/create",
       label: "Create",
       icon: MdOutlineAddCircle,
       encrypted: true,
+      role: [1],
     },
-    { path: "/edit", label: "Edit", icon: FaEdit, encrypted: true },
+    { path: "/edit", label: "Edit", icon: FaEdit, encrypted: true, role: [1] },
     {
       path: "/login",
       label: firebaseUserData?.uid ? "Logout" : "Login",
       icon: FaSignInAlt,
+      role: [0, 1, 2],
     },
     {
       path: "/profile",
       label: "My Profile",
       icon: FaUserCircle,
       encrypted: true,
+      role: [1, 2],
     },
     /* TODO: Add when study */
     // {
     //   path: "/upload-photo",
     //   label: "Photo",
     //   icon: BsImage,
+    //   role: [0, 1, 2],
     // },
-    { path: "/donkey", label: "#", icon: GiDonkey },
-  ].filter((singleData) =>
-    firebaseUserData?.uid ? singleData : !singleData?.encrypted
-  );
+    { path: "/donkey", label: "#", icon: GiDonkey, role: [0, 1, 2] },
+  ].filter((singleData) => {
+    if (firebaseUserData?.uid) {
+      if (+firebaseFullUserData?.role !== 1)
+        return singleData?.role?.includes(2);
+      else return singleData;
+    } else return singleData?.role?.includes(0);
+  });
   return { data };
 };
 
