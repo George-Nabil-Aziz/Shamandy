@@ -9,9 +9,8 @@ import { HiHome } from "react-icons/hi";
 import { HiUser } from "react-icons/hi";
 import { GiDonkey } from "react-icons/gi";
 import { MdOutlineAddCircle } from "react-icons/md";
-import { FaHistory } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaHistory, FaEdit, FaSignInAlt, FaUserCircle } from "react-icons/fa";
+import { BsImage } from "react-icons/bs";
 
 export const StaticData = () => {
   // Context
@@ -26,6 +25,10 @@ export const StaticData = () => {
     setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    handleLogout,
   } = useContext(AppContext);
 
   // TODO: Static data
@@ -46,6 +49,18 @@ export const StaticData = () => {
       label: firebaseUserData?.uid ? "Logout" : "Login",
       icon: FaSignInAlt,
     },
+    {
+      path: "/profile",
+      label: "My Profile",
+      icon: FaUserCircle,
+      encrypted: true,
+    },
+    /* TODO: Add when study */
+    // {
+    //   path: "/upload-photo",
+    //   label: "Photo",
+    //   icon: BsImage,
+    // },
     { path: "/donkey", label: "#", icon: GiDonkey },
   ].filter((singleData) =>
     firebaseUserData?.uid ? singleData : !singleData?.encrypted

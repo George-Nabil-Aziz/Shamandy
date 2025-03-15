@@ -39,7 +39,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          {data.map(({ label, path, icon }) => (
+          {data?.map(({ label, path, icon }) => (
             <Sidebar.Item
               key={path}
               as={Link}

@@ -1,9 +1,9 @@
 // React
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Core
-import { AppButton, auth, AppContext } from "/src";
+import { Enums, AppButton, auth, AppContext, db } from "/src";
 
 // Firebase
 import {
@@ -12,9 +12,10 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 // Flowbite
-import { Card, Label, TextInput } from "flowbite-react";
+import { Card, Label, Select, TextInput } from "flowbite-react";
 
 export const Login = () => {
   // Context
@@ -29,6 +30,10 @@ export const Login = () => {
     setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    handleLogout,
   } = useContext(AppContext);
 
   // State
@@ -58,14 +63,9 @@ export const Login = () => {
           );
           const user = userCredential.user;
           await updateProfile(user, formData);
-          // await setDoc(doc(db, "users", user.uid), {
-          //   name,
-          //   email,
-          //   phone, // Storing phone number
-          //   uid: user.uid,
-          //   createdAt: new Date(),
-          // });
-          // console.log("User signed up and phone stored:", user);
+          await setDoc(doc(db, "firebase-users", user.uid), formData, {
+            merge: true,
+          });
 
           alert("Account created successfully!");
         } else {
@@ -84,41 +84,10 @@ export const Login = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      alert("User logged out successfully.");
-    } catch (error) {
-      alert("Error logging out:", error.message);
-    }
-  };
-
   return (
     <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
-        <div className="text-lg">
-          {firebaseUserData?.displayName && (
-            <div>Name: {firebaseUserData?.displayName}</div>
-          )}
-          {firebaseUserData?.email && (
-            <div className="break-words">Email: {firebaseUserData?.email}</div>
-          )}
-          {"emailVerified" in (firebaseUserData || {}) && (
-            <div>
-              Verified: {firebaseUserData?.emailVerified ? "Yes" : "No"}
-            </div>
-          )}
-          {firebaseUserData?.metadata?.creationTime && (
-            <div>Created at: {firebaseUserData?.metadata?.creationTime}</div>
-          )}
-          {firebaseUserData?.metadata?.lastSignInTime && (
-            <div>
-              Last login at: {firebaseUserData?.metadata?.lastSignInTime}
-            </div>
-          )}
-          {firebaseUserData?.uid && <div>Id: {firebaseUserData?.uid}</div>}
-          <AppButton type="button" label="Logout" onClick={handleLogout} />
-        </div>
+        <AppButton type="button" label="Logout" onClick={handleLogout} />
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleAuth}>
           {isSignUp && (
@@ -149,12 +118,39 @@ export const Login = () => {
 
           {isSignUp && (
             <div>
-              <Label htmlFor="phone" value="Your phone number" />
+              <Label htmlFor="phoneNumber" value="Your mobile number" />
               <TextInput
-                id="phone"
+                id="phoneNumber"
                 type="number"
-                placeholder="Your phone number"
-                value={formData?.phone}
+                placeholder="Your mobile number"
+                value={formData?.phoneNumber}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
+
+          {isSignUp && (
+            <div>
+              <Label htmlFor="role" value="Select your role" />
+              <Select id="role" onChange={handleChange} required>
+                {Enums?.roles?.map((role) => (
+                  <option key={role?.value} value={role?.value}>
+                    {role?.label}
+                  </option>
+                ))}
+              </Select>
+            </div>
+          )}
+
+          {isSignUp && (
+            <div>
+              <Label htmlFor="photoURL" value="Your photo URL" />
+              <TextInput
+                id="photoURL"
+                type="text"
+                placeholder="Your photo URL"
+                value={formData?.photoURL}
                 onChange={handleChange}
                 required
               />
@@ -208,7 +204,10 @@ export const Login = () => {
           />
           <div className="flex items-center gap-2">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
-            <div className="underline" onClick={() => setIsSignUp(!isSignUp)}>
+            <div
+              className="underline cursor-pointer"
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
               {isSignUp ? "Login" : "Signup"}
             </div>
           </div>

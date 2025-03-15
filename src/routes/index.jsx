@@ -12,9 +12,13 @@ import {
 } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
+import { FaUserMd, FaImage } from "react-icons/fa";
+import { FaUserGear } from "react-icons/fa6";
+import { MdMonochromePhotos } from "react-icons/md";
 
 // Components
 import { Error404Page } from "../pages/404";
+import { RouterProvider } from "./router-provider";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
 import { OrderPage } from "../pages/order-table";
@@ -22,11 +26,17 @@ import { History } from "../pages/history";
 import { Create } from "../pages/create";
 import { Edit } from "../pages/edit";
 import { Login } from "../pages/login";
+import { Profile } from "../pages/profile";
+import { UploadPhoto } from "../pages/upload-photo";
 
 export const routes = [
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <RouterProvider>
+        <MainLayout />
+      </RouterProvider>
+    ),
     loader() {
       return {
         bcLabel: "Home",
@@ -97,6 +107,30 @@ export const routes = [
             bcIcon: CiLogin,
             jtTitle: "Here you can auth",
             jtIcon: FiLogIn,
+          };
+        },
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+        loader() {
+          return {
+            bcLabel: "Edit profile",
+            bcIcon: FaUserMd,
+            jtTitle: "Here you can edit your profile data",
+            jtIcon: FaUserGear,
+          };
+        },
+      },
+      {
+        path: "Upload-photo",
+        element: <UploadPhoto />,
+        loader() {
+          return {
+            bcLabel: "Upload photo",
+            bcIcon: FaImage,
+            jtTitle: "Here you can Upload photo",
+            jtIcon: MdMonochromePhotos,
           };
         },
       },

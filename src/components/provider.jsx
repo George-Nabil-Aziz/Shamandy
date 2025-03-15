@@ -2,10 +2,11 @@
 import { createContext, useEffect, useState } from "react";
 
 // Core
-import { auth } from "/src";
+import { auth, db } from "/src";
 
 // Firebase
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 // Static data
 import {
@@ -18,22 +19,40 @@ import {
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  // Firebase
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  // State
   const [mainUserSandwichs, setMainUserSandwichs] = useState(mainSandwichs);
   const [usersData, setUsersData] = useState(PreferencesUser);
   const [unitPrice, setUnitPrice] = useState(UnitPrice);
   const [firebaseDabaseIdName, setFirebaseDabaseIdName] =
     useState(FirebaseDabaseIdName);
+
   const [firebaseUserData, setFirebaseUserData] = useState(auth);
+  const [firebaseFullUserData, setFirebaseFullUserData] = useState();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
       alert("User logged out successfully.");
     } catch (error) {
-      console.log(error);
       alert("Error logging out:", error.message);
     }
   };
+
+  const handleGetUserFullData = async () => {
+    if (user?.uid) {
+      const userRef = doc(db, "firebase-users", user.uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) setFirebaseFullUserData(userSnap.data());
+    }
+  };
+
+  useEffect(() => {
+    handleGetUserFullData();
+  }, [user]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -56,6 +75,9 @@ export const AppProvider = ({ children }) => {
         setFirebaseDabaseIdName,
         firebaseUserData,
         setFirebaseUserData,
+        firebaseFullUserData,
+        setFirebaseFullUserData,
+        handleGetUserFullData,
         handleLogout,
       }}
     >

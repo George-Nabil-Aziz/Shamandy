@@ -61,7 +61,10 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           label={
             <Avatar
               alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              img={
+                firebaseUserData?.photoURL ??
+                "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              }
               rounded
             />
           }
@@ -69,7 +72,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           {Object.keys(firebaseUserData || {})?.map(
             (key) =>
               ["displayName", "email"].includes(key) && (
-                <Dropdown.Header>
+                <Dropdown.Header key={key}>
                   <span className="block truncate text-sm font-medium">
                     {String(firebaseUserData[key])}
                   </span>
@@ -80,6 +83,12 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           {!firebaseUserData?.uid && (
             <Dropdown.Item onClick={() => navigate("/login")}>
               Login
+            </Dropdown.Item>
+          )}
+
+          {firebaseUserData?.uid && (
+            <Dropdown.Item onClick={() => navigate("/profile")}>
+              Edit profile
             </Dropdown.Item>
           )}
 
@@ -101,7 +110,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
         <Navbar.Toggle className="!block md:!hidden" />
       </div>
       <Navbar.Collapse className="lg:!hidden">
-        {data.map(({ label, path, icon }) => (
+        {data?.map(({ label, path, icon }) => (
           <Navbar.Link
             key={path}
             as={Link}
