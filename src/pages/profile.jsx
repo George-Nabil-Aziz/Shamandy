@@ -111,7 +111,11 @@ export const Profile = () => {
             <Label htmlFor="role" value="Select your role" />
             <Select id="role" onChange={handleChange} required>
               {Enums?.roles?.map((role) => (
-                <option key={role?.value} value={role?.value}>
+                <option
+                  key={role?.value}
+                  value={role?.value}
+                  selected={+formData?.role === role.value}
+                >
                   {role?.label}
                 </option>
               ))}
