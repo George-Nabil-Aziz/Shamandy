@@ -39,6 +39,7 @@ export const Login = () => {
   // State
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   // Hooks
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ export const Login = () => {
       (isSignUp && formData?.password === formData?.confirmPassword)
     ) {
       try {
+        setLoading(true);
         if (isSignUp) {
           const userCredential = await createUserWithEmailAndPassword(
             auth,
@@ -80,6 +82,8 @@ export const Login = () => {
         navigate("/");
       } catch (error) {
         alert(error.message);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -87,7 +91,13 @@ export const Login = () => {
   return (
     <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
-        <AppButton type="button" label="Logout" onClick={handleLogout} />
+        <AppButton
+          type="button"
+          label="Logout"
+          onClick={handleLogout}
+          loading={loading}
+          disabled={loading}
+        />
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleAuth}>
           {isSignUp && (
@@ -198,8 +208,10 @@ export const Login = () => {
           <AppButton
             type="submit"
             label={isSignUp ? "Signup" : "Login"}
+            loading={loading}
             disabled={
-              isSignUp && formData?.password !== formData?.confirmPassword
+              loading ||
+              (isSignUp && formData?.password !== formData?.confirmPassword)
             }
           />
           <div className="flex items-center gap-2">

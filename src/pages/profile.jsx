@@ -40,6 +40,7 @@ export const Profile = () => {
     role: firebaseFullUserData?.role,
     photoURL: firebaseUserData?.photoURL,
   });
+  const [loading, setLoading] = useState(false);
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -53,6 +54,7 @@ export const Profile = () => {
 
     // if (formData?.password === formData?.confirmPassword) {
     try {
+      setLoading(true);
       await updateProfile(user, formData);
       await setDoc(doc(db, "firebase-users", user.uid), formData, {
         merge: true,
@@ -62,6 +64,8 @@ export const Profile = () => {
       setEditMode(false);
     } catch (error) {
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
     // }
   };
@@ -182,6 +186,8 @@ export const Profile = () => {
             type="button"
             label="Edit My Profile"
             onClick={() => setEditMode(true)}
+            loading={loading}
+            disabled={loading}
           />
 
           {firebaseUserData?.displayName && (
