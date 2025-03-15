@@ -11,6 +11,7 @@ import { GiDonkey } from "react-icons/gi";
 import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory, FaEdit, FaSignInAlt, FaUserCircle } from "react-icons/fa";
 import { BsImage } from "react-icons/bs";
+import { IoReceiptSharp } from "react-icons/io5";
 
 export const StaticData = () => {
   // Context
@@ -40,6 +41,13 @@ export const StaticData = () => {
       icon: HiUser,
       encrypted: true,
       role: [1, 2],
+    },
+    {
+      path: "/receipt",
+      label: "Receipt",
+      icon: IoReceiptSharp,
+      encrypted: true,
+      role: [1],
     },
     // @TODO: Add when needed
     // { path: "/history", label: "History", icon: FaHistory, role: [0, 1, 2] },

@@ -15,13 +15,16 @@ import { FiLogIn } from "react-icons/fi";
 import { FaUserMd, FaImage } from "react-icons/fa";
 import { FaUserGear } from "react-icons/fa6";
 import { MdMonochromePhotos } from "react-icons/md";
+import { MdOutlineReceipt } from "react-icons/md";
+import { TfiReceipt } from "react-icons/tfi";
 
 // Components
 import { Error404Page } from "../pages/404";
 import { RouterProvider } from "./router-provider";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
-import { OrderPage } from "../pages/order-table";
+import { Receipt } from "../pages/receipt";
+import { MyOrderPage } from "../pages/my-order";
 import { History } from "../pages/history";
 import { Create } from "../pages/create";
 import { Edit } from "../pages/edit";
@@ -51,8 +54,20 @@ export const routes = [
         element: <MainPage />,
       },
       {
+        path: "receipt",
+        element: <Receipt />,
+        loader() {
+          return {
+            bcLabel: "Receipt",
+            bcIcon: MdOutlineReceipt,
+            jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
+            jtIcon: TfiReceipt,
+          };
+        },
+      },
+      {
         path: "order",
-        element: <OrderPage />,
+        element: <MyOrderPage />,
         loader() {
           return {
             bcLabel: "Order",
