@@ -29,6 +29,7 @@ export const History = () => {
       <p>12-03-2025: Separated login page</p>
       <p>12-03-2025: Firebase users with thier Ids</p>
       <p>15-03-2025: Firebase create, edit food functions</p>
+      <p>16-03-2025: Firebase fix order</p>
       <p>Will Be: Adding admin, user Login</p>
 
       <hr />
@@ -50,6 +51,21 @@ export const History = () => {
         -User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches
       </h2>
+
+      <hr />
+
+      <div>
+        <p>Firebase stop authentication working:</p>
+        <p>
+          The following Authentication features will stop working when Firebase
+          Dynamic Links shuts down on August 25, 2025: email link authentication
+          for mobile apps, as well as Cordova OAuth support for web apps. To use
+          these features after the shutdown of Dynamic Links, migrate to use an
+          alternative solution as described in the Firebase documentation. If
+          you take no action, your apps and end users will be able to continue
+          using these features until August 25, 2025.
+        </p>
+      </div>
     </div>
   );
 };
