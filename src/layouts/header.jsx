@@ -60,7 +60,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           inline
           label={
             <Avatar
-              alt="User settings"
+              alt="Logo"
               img={
                 firebaseUserData?.photoURL ||
                 "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
