@@ -14,16 +14,17 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
 

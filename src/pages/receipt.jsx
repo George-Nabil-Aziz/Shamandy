@@ -13,15 +13,6 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 export const Receipt = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
-
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,

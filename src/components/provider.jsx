@@ -8,14 +8,6 @@ import { auth, db } from "/src";
 import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
-// Static data
-import {
-  mainSandwichs,
-  PreferencesUser,
-  UnitPrice,
-  FirebaseDabaseIdName,
-} from "../services/static-data";
-
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -24,12 +16,6 @@ export const AppProvider = ({ children }) => {
   const user = auth.currentUser;
 
   // State
-  const [mainUserSandwichs, setMainUserSandwichs] = useState(mainSandwichs);
-  const [usersData, setUsersData] = useState(PreferencesUser);
-  const [unitPrice, setUnitPrice] = useState(UnitPrice);
-  const [firebaseDabaseIdName, setFirebaseDabaseIdName] =
-    useState(FirebaseDabaseIdName);
-
   const [firebaseUserData, setFirebaseUserData] = useState(auth);
   const [firebaseFullUserData, setFirebaseFullUserData] = useState();
   const [firebaseAllUsers, setFirebaseAllUsers] = useState();
@@ -96,15 +82,6 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        mainUserSandwichs,
-        setMainUserSandwichs,
-        usersData,
-        setUsersData,
-        unitPrice,
-        setUnitPrice,
-        firebaseDabaseIdName,
-        setFirebaseDabaseIdName,
-
         firebaseUserData,
         setFirebaseUserData,
         firebaseFullUserData,

@@ -16,19 +16,17 @@ import { IoReceiptSharp } from "react-icons/io5";
 export const StaticData = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,
     setFirebaseFullUserData,
     handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
 
@@ -88,39 +86,4 @@ export const StaticData = () => {
     } else return singleData?.role?.includes(0);
   });
   return { data };
-};
-
-export const mainSandwichs = {
-  fool: 0,
-  ta3mia: 0,
-  batates: 0,
-  koshary: 0,
-};
-
-export const PreferencesUser = {
-  pappy: mainSandwichs,
-  mummy: mainSandwichs,
-  batbat: mainSandwichs,
-  davdav: mainSandwichs,
-  boobol: mainSandwichs,
-  smsm: mainSandwichs,
-  gogo: mainSandwichs,
-};
-
-export const UnitPrice = {
-  fool: 8,
-  ta3mia: 8,
-  batates: 12,
-  koshary: 25,
-};
-
-export const FirebaseDabaseIdName = {
-  order: {
-    collection: "shamandy-order",
-    id: "order-static-id",
-  },
-  unitPrice: {
-    collection: "shamandy-unit-price",
-    id: "unit-price-static-id",
-  },
 };

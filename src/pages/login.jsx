@@ -20,19 +20,17 @@ import { Card, Label, Select, TextInput } from "flowbite-react";
 export const Login = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,
     setFirebaseFullUserData,
     handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
 

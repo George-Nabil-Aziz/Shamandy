@@ -16,15 +16,6 @@ import { FaSnowman, FaRegSmileBeam } from "react-icons/fa";
 export const Edit = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
-
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,

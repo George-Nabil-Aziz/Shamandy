@@ -4,9 +4,6 @@ import { useEffect, useState, useContext } from "react";
 // Flowbite
 import { TextInput, Label, Select } from "flowbite-react";
 
-// TODO: Static data
-import { PreferencesUser, UnitPrice } from "../services/static-data";
-
 // Core
 import { AppContext, AppButton, auth, db } from "/src";
 
@@ -24,15 +21,6 @@ import {
 export const MyOrderPage = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
-
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,

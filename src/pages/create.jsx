@@ -20,15 +20,6 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 export const Create = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
-
     firebaseUserData,
     setFirebaseUserData,
     firebaseFullUserData,
