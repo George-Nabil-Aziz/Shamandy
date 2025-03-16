@@ -28,9 +28,10 @@ export const History = () => {
       <p>15-01-2025: Add login page</p>
       <p>12-03-2025: Separated login page</p>
       <p>12-03-2025: Firebase users with thier Ids</p>
+      <p>14-03-2025: Adding admin, user Login</p>
       <p>15-03-2025: Firebase create, edit food functions</p>
       <p>16-03-2025: Firebase fix order</p>
-      <p>Will Be: Adding admin, user Login</p>
+      <p>16-03-2024: End sprints/3 (Gaad)</p>
 
       <hr />
       <h1 className="flex gap-2 items-center">

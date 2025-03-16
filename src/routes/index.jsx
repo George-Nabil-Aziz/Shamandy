@@ -13,7 +13,7 @@ import {
 import { RiEdit2Fill } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
 import { FaUserMd, FaImage } from "react-icons/fa";
-import { FaUserGear, FaUsers } from "react-icons/fa6";
+import { FaUserGear, FaUserSecret } from "react-icons/fa6";
 import { MdMonochromePhotos } from "react-icons/md";
 import { MdOutlineReceipt } from "react-icons/md";
 import { TfiReceipt } from "react-icons/tfi";
@@ -145,9 +145,9 @@ export const routes = [
         loader() {
           return {
             bcLabel: "Edit users",
-            bcIcon: FaUsers,
+            bcIcon: ImUsers,
             jtTitle: "Here you can edit all users",
-            jtIcon: ImUsers,
+            jtIcon: FaUserSecret,
           };
         },
       },

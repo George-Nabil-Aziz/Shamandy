@@ -86,6 +86,13 @@ export const MyOrderPage = () => {
     }
   }, [firebaseAllItems]);
 
+  useEffect(() => {
+    setMyOrder(
+      firebaseFullUserData?.order ||
+        firebaseAllItems?.map((item) => ({ name: item?.name, count: 0 }))
+    );
+  }, [firebaseFullUserData]);
+
   return (
     <div className="space-y-4">
       <div>
@@ -135,8 +142,10 @@ export const MyOrderPage = () => {
           <span>{item?.name}: </span>
           <span
             className={`${
-              +myOrder?.find((order) => order?.name === item?.name)?.count >=
-                0 && "line-through opacity-50"
+              +myOrder?.find((order) => order?.name === item?.name)?.count !==
+                +firebaseFullUserData?.order?.find(
+                  (order) => order?.name === item?.name
+                )?.count && "line-through opacity-50"
             }`}
           >
             {
@@ -167,7 +176,7 @@ export const MyOrderPage = () => {
           className="cursor-pointer"
           onClick={handleUpdate}
           loading={loading}
-          disabled={loading || myOrder.length <= 0}
+          disabled={loading || myOrder?.length <= 0}
         />
       </div>
     </div>
