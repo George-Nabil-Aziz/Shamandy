@@ -11,7 +11,9 @@ import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { Label, Select, TextInput } from "flowbite-react";
 
 // React icons
-import { FaSnowman, FaRegSmileBeam } from "react-icons/fa";
+import { IoFastFoodOutline } from "react-icons/io5";
+import { GiSandwich, GiMoneyStack } from "react-icons/gi";
+import { TfiMoney } from "react-icons/tfi";
 
 export const Edit = () => {
   // Context
@@ -127,8 +129,8 @@ export const Edit = () => {
               type="text"
               value={formData?.name}
               onChange={handleChange}
-              icon={FaSnowman}
-              rightIcon={FaRegSmileBeam}
+              icon={IoFastFoodOutline}
+              rightIcon={GiSandwich}
               // addon="Bro"
             />
           </div>
@@ -144,6 +146,8 @@ export const Edit = () => {
               type="number"
               value={formData?.price}
               onChange={handleChange}
+              icon={TfiMoney}
+              rightIcon={GiMoneyStack}
             />
           </div>
 
