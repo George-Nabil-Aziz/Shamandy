@@ -12,21 +12,36 @@ import {
 } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
+import { FaUserMd, FaImage } from "react-icons/fa";
+import { FaUserGear, FaUserSecret } from "react-icons/fa6";
+import { MdMonochromePhotos } from "react-icons/md";
+import { MdOutlineReceipt } from "react-icons/md";
+import { TfiReceipt } from "react-icons/tfi";
+import { ImUsers } from "react-icons/im";
 
 // Components
 import { Error404Page } from "../pages/404";
+import { RouterProvider } from "./router-provider";
 import { MainLayout } from "../layouts";
 import { MainPage } from "../pages";
-import { OrderPage } from "../pages/order-table";
+import { Receipt } from "../pages/receipt";
+import { MyOrderPage } from "../pages/my-order";
 import { History } from "../pages/history";
 import { Create } from "../pages/create";
 import { Edit } from "../pages/edit";
 import { Login } from "../pages/login";
+import { Profile } from "../pages/profile";
+import { Users } from "../pages/users";
+import { UploadPhoto } from "../pages/upload-photo";
 
 export const routes = [
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      // <RouterProvider>
+      <MainLayout />
+      // </RouterProvider>
+    ),
     loader() {
       return {
         bcLabel: "Home",
@@ -41,11 +56,23 @@ export const routes = [
         element: <MainPage />,
       },
       {
-        path: "sayed",
-        element: <OrderPage />,
+        path: "receipt",
+        element: <Receipt />,
         loader() {
           return {
-            bcLabel: "Sayed",
+            bcLabel: "Receipt",
+            bcIcon: MdOutlineReceipt,
+            jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
+            jtIcon: TfiReceipt,
+          };
+        },
+      },
+      {
+        path: "order",
+        element: <MyOrderPage />,
+        loader() {
+          return {
+            bcLabel: "Order",
             bcIcon: BsBackpack2,
             jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
             jtIcon: GiTurtle,
@@ -97,6 +124,42 @@ export const routes = [
             bcIcon: CiLogin,
             jtTitle: "Here you can auth",
             jtIcon: FiLogIn,
+          };
+        },
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+        loader() {
+          return {
+            bcLabel: "Edit profile",
+            bcIcon: FaUserMd,
+            jtTitle: "Here you can edit your profile data",
+            jtIcon: FaUserGear,
+          };
+        },
+      },
+      {
+        path: "users",
+        element: <Users />,
+        loader() {
+          return {
+            bcLabel: "Edit users",
+            bcIcon: ImUsers,
+            jtTitle: "Here you can edit all users",
+            jtIcon: FaUserSecret,
+          };
+        },
+      },
+      {
+        path: "Upload-photo",
+        element: <UploadPhoto />,
+        loader() {
+          return {
+            bcLabel: "Upload photo",
+            bcIcon: FaImage,
+            jtTitle: "Here you can Upload photo",
+            jtIcon: MdMonochromePhotos,
           };
         },
       },

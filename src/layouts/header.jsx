@@ -14,16 +14,17 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
 
@@ -60,8 +61,11 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           inline
           label={
             <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              alt="Logo"
+              img={
+                firebaseUserData?.photoURL ||
+                "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              }
               rounded
             />
           }
@@ -69,7 +73,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           {Object.keys(firebaseUserData || {})?.map(
             (key) =>
               ["displayName", "email"].includes(key) && (
-                <Dropdown.Header>
+                <Dropdown.Header key={key}>
                   <span className="block truncate text-sm font-medium">
                     {String(firebaseUserData[key])}
                   </span>
@@ -84,10 +88,19 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           )}
 
           {firebaseUserData?.uid && (
+            <Dropdown.Item onClick={() => navigate("/profile")}>
+              Edit profile
+            </Dropdown.Item>
+          )}
+
+          {firebaseUserData?.uid && (
             <>
               <Dropdown.Divider />
               <Dropdown.Item
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  navigate("/");
+                }}
                 className="!text-red-500 font-black"
               >
                 Logout
@@ -101,7 +114,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
         <Navbar.Toggle className="!block md:!hidden" />
       </div>
       <Navbar.Collapse className="lg:!hidden">
-        {data.map(({ label, path, icon }) => (
+        {data?.map(({ label, path, icon }) => (
           <Navbar.Link
             key={path}
             as={Link}

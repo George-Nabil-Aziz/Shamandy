@@ -2,41 +2,77 @@
 import { createContext, useEffect, useState } from "react";
 
 // Core
-import { auth } from "/src";
+import { auth, db } from "/src";
 
 // Firebase
-import { onAuthStateChanged, signOut } from "firebase/auth";
-
-// Static data
-import {
-  mainSandwichs,
-  PreferencesUser,
-  UnitPrice,
-  FirebaseDabaseIdName,
-} from "../services/static-data";
+import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [mainUserSandwichs, setMainUserSandwichs] = useState(mainSandwichs);
-  const [usersData, setUsersData] = useState(PreferencesUser);
-  const [unitPrice, setUnitPrice] = useState(UnitPrice);
-  const [firebaseDabaseIdName, setFirebaseDabaseIdName] =
-    useState(FirebaseDabaseIdName);
+  // Firebase
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  // State
   const [firebaseUserData, setFirebaseUserData] = useState(auth);
+  const [firebaseFullUserData, setFirebaseFullUserData] = useState();
+  const [firebaseAllUsers, setFirebaseAllUsers] = useState();
+  const [firebaseAllItems, setFirebaseAllItems] = useState();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
       alert("User logged out successfully.");
     } catch (error) {
-      console.log(error);
       alert("Error logging out:", error.message);
     }
   };
 
+  const handleGetAllUsers = async () => {
+    const usersCollection = collection(db, "firebase-users");
+    const usersSnapshot = await getDocs(usersCollection);
+    setFirebaseAllUsers(
+      usersSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+    );
+  };
+  const handleGetAllItems = async () => {
+    const usersCollection = collection(db, "firebase-items");
+    const usersSnapshot = await getDocs(usersCollection);
+    setFirebaseAllItems(
+      usersSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+    );
+  };
+
+  const handleGetUserFullData = async () => {
+    if (user?.uid) {
+      const userRef = doc(db, "firebase-users", user.uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) setFirebaseFullUserData(userSnap.data());
+    }
+  };
+
+  useEffect(() => {
+    if (firebaseUserData?.uid) {
+      handleGetAllUsers();
+      handleGetAllItems();
+    }
+  }, [firebaseUserData?.uid]);
+
+  useEffect(() => {
+    handleGetUserFullData();
+  }, [user]);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // console.log("onAuthStateChanged"); // End sprints/3
       setFirebaseUserData(currentUser);
     });
 
@@ -46,16 +82,17 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        mainUserSandwichs,
-        setMainUserSandwichs,
-        usersData,
-        setUsersData,
-        unitPrice,
-        setUnitPrice,
-        firebaseDabaseIdName,
-        setFirebaseDabaseIdName,
         firebaseUserData,
         setFirebaseUserData,
+        firebaseFullUserData,
+        setFirebaseFullUserData,
+        handleGetUserFullData,
+        firebaseAllUsers,
+        setFirebaseAllUsers,
+        handleGetAllUsers,
+        firebaseAllItems,
+        setFirebaseAllItems,
+        handleGetAllItems,
         handleLogout,
       }}
     >

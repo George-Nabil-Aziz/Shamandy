@@ -2,109 +2,110 @@
 import { useContext, useState } from "react";
 
 // Core
-import { TextInput } from "flowbite-react";
-import { AppContext, AppButton } from "/src";
+import { AppContext, AppButton, db } from "/src";
+
+// Flowbite
+import { Label, TextInput } from "flowbite-react";
+
+// Firebase
+import { getAuth } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 // React icons
 import { SiBurgerking } from "react-icons/si";
 import { MdOutlineRestaurant } from "react-icons/md";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { FaSnowman } from "react-icons/fa";
-import { FaRegSmileBeam } from "react-icons/fa";
 
 export const Create = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
+    firebaseUserData,
+    setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
+    handleLogout,
   } = useContext(AppContext);
 
   // State
-  const [newLabel, setNewLabel] = useState("");
-  const [newLabelPrice, setNewLabelPrice] = useState("");
-  const [newPerson, setNewPerson] = useState("");
+  const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const handleAddItems = async () => {
+    try {
+      setLoading(true);
+      await setDoc(doc(db, "firebase-items", formData?.name), formData, {
+        merge: true,
+      });
+      setFormData({ name: "", price: "" });
+      handleGetAllItems();
+      alert("Food added successfully!");
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="space-y-4">
-      <p>Enter food:</p>
-      <TextInput
-        onChange={(text) => setNewLabel(text.currentTarget.value)}
-        value={newLabel}
-        placeholder="Food name ..."
-        icon={SiBurgerking}
-        rightIcon={MdOutlineRestaurant}
-        // addon="Ymmy"
-      />
-      <p>Do you know it's price ?</p>
-      <TextInput
-        type="number"
-        min={0}
-        disabled={!newLabel}
-        onChange={(text) => setNewLabelPrice(+text.currentTarget.value)}
-        value={newLabelPrice}
-        placeholder="0"
-        icon={FaMoneyBill1Wave}
-        rightIcon={RiMoneyDollarCircleLine}
-        // addon="$"
-      />
+      <div>
+        <Label
+          htmlFor="name"
+          value="Enter food:"
+          className="text-textColor dark:text-darkTextColor font-normal text-md"
+        />
+        <TextInput
+          id="name"
+          onChange={handleChange}
+          value={formData?.name}
+          placeholder="Food name ..."
+          icon={SiBurgerking}
+          rightIcon={MdOutlineRestaurant}
+          // addon="Ymmy"
+        />
+      </div>
+
+      <div>
+        <Label
+          htmlFor="name"
+          value="Do you know it's price ?"
+          className="text-textColor dark:text-darkTextColor font-normal text-md"
+        />
+        <TextInput
+          id="price"
+          type="number"
+          min={0}
+          disabled={!formData?.name}
+          onChange={handleChange}
+          value={formData.price}
+          placeholder="0"
+          icon={FaMoneyBill1Wave}
+          rightIcon={RiMoneyDollarCircleLine}
+          // addon="$"
+        />
+      </div>
+
       <AppButton
-        label="Save"
-        icon="basil:save-outline"
-        onClick={() => {
-          setMainUserSandwichs((prev) => ({
-            ...prev,
-            [newLabel]: 0,
-          }));
-          setUnitPrice((prev) => ({
-            ...prev,
-            [newLabel]: newLabelPrice,
-          }));
-          Object.keys(usersData).map((user) => {
-            setUsersData((prev) => ({
-              ...prev,
-              [user]: {
-                ...usersData[user],
-                [newLabel]: 0,
-              },
-            }));
-          });
-
-          setNewLabel("");
-          setNewLabelPrice("");
-        }}
+        label="Create"
+        icon="material-symbols:add-to-photos-outline-rounded"
         className="w-full"
-        disabled={!newLabel}
-      />
-
-      <hr />
-
-      <p>Enter new person:</p>
-      <TextInput
-        onChange={(text) => setNewPerson(text.currentTarget.value)}
-        value={newPerson}
-        placeholder="Person name ..."
-        icon={FaSnowman}
-        rightIcon={FaRegSmileBeam}
-        // addon="Bro"
-      />
-      <AppButton
-        label="Save"
-        icon="basil:save-outline"
-        onClick={() => {
-          newPerson &&
-            setUsersData((prev) => ({
-              ...prev,
-              [newPerson]: mainUserSandwichs,
-            }));
-          setNewPerson("");
-        }}
-        className="w-full"
-        disabled={!newPerson}
+        onClick={handleAddItems}
+        loading={loading}
+        disabled={loading || !formData?.name}
       />
     </div>
   );
