@@ -92,6 +92,16 @@ export const Login = () => {
     }
   };
 
+  const handleInitialValue = () => {
+    setFormData({ ...formData, role: 2 });
+  };
+
+  useEffect(() => {
+    if (!firebaseUserData?.uid) {
+      handleInitialValue();
+    }
+  }, []);
+
   return (
     <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
