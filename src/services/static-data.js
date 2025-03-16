@@ -12,6 +12,7 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory, FaEdit, FaSignInAlt, FaUserCircle } from "react-icons/fa";
 import { BsImage } from "react-icons/bs";
 import { IoReceiptSharp } from "react-icons/io5";
+import { FaUserSecret } from "react-icons/fa6";
 
 export const StaticData = () => {
   // Context
@@ -69,6 +70,13 @@ export const StaticData = () => {
       icon: FaUserCircle,
       encrypted: true,
       role: [1, 2],
+    },
+    {
+      path: "/users",
+      label: "Edit Users",
+      icon: FaUserSecret,
+      encrypted: true,
+      role: [1],
     },
     /* TODO: Add when study */
     // {
