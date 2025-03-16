@@ -121,7 +121,7 @@ export const Receipt = () => {
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 font-medium text-gray-900 dark:text-white">
             <Table.Cell className="whitespace-nowrap">Column price</Table.Cell>
             {firebaseAllItems?.map((item) => (
-              <Table.Cell key={item} className="whitespace-nowrap">
+              <Table.Cell key={item?.id} className="whitespace-nowrap">
                 {handleAllOfKind(item) * item?.price}
               </Table.Cell>
             ))}
