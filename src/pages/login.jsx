@@ -1,9 +1,9 @@
 // React
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Core
-import { AppButton, auth, AppContext } from "/src";
+import { Enums, AppButton, auth, AppContext, db } from "/src";
 
 // Firebase
 import {
@@ -12,28 +12,32 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 // Flowbite
-import { Card, Label, TextInput } from "flowbite-react";
+import { Card, Label, Select, TextInput } from "flowbite-react";
 
 export const Login = () => {
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
+    handleLogout,
   } = useContext(AppContext);
 
   // State
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   // Hooks
   const navigate = useNavigate();
@@ -50,6 +54,7 @@ export const Login = () => {
       (isSignUp && formData?.password === formData?.confirmPassword)
     ) {
       try {
+        setLoading(true);
         if (isSignUp) {
           const userCredential = await createUserWithEmailAndPassword(
             auth,
@@ -58,21 +63,22 @@ export const Login = () => {
           );
           const user = userCredential.user;
           await updateProfile(user, formData);
-          // await setDoc(doc(db, "users", user.uid), {
-          //   name,
-          //   email,
-          //   phone, // Storing phone number
-          //   uid: user.uid,
-          //   createdAt: new Date(),
-          // });
-          // console.log("User signed up and phone stored:", user);
+          await setDoc(doc(db, "firebase-users", user.uid), formData, {
+            merge: true,
+          });
 
           alert("Account created successfully!");
         } else {
-          await signInWithEmailAndPassword(
+          const userCredential = await signInWithEmailAndPassword(
             auth,
             formData?.email,
             formData?.password
+          );
+          const user = userCredential.user;
+          await setDoc(
+            doc(db, "firebase-users", user.uid),
+            { email: formData?.email, password: formData?.password },
+            { merge: true }
           );
           alert("Logged in successfully!");
         }
@@ -80,45 +86,32 @@ export const Login = () => {
         navigate("/");
       } catch (error) {
         alert(error.message);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      alert("User logged out successfully.");
-    } catch (error) {
-      alert("Error logging out:", error.message);
-    }
+  const handleInitialValue = () => {
+    setFormData({ ...formData, role: 2 });
   };
+
+  useEffect(() => {
+    if (!firebaseUserData?.uid) {
+      handleInitialValue();
+    }
+  }, []);
 
   return (
     <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
-        <div className="text-lg">
-          {firebaseUserData?.displayName && (
-            <div>Name: {firebaseUserData?.displayName}</div>
-          )}
-          {firebaseUserData?.email && (
-            <div className="break-words">Email: {firebaseUserData?.email}</div>
-          )}
-          {"emailVerified" in (firebaseUserData || {}) && (
-            <div>
-              Verified: {firebaseUserData?.emailVerified ? "Yes" : "No"}
-            </div>
-          )}
-          {firebaseUserData?.metadata?.creationTime && (
-            <div>Created at: {firebaseUserData?.metadata?.creationTime}</div>
-          )}
-          {firebaseUserData?.metadata?.lastSignInTime && (
-            <div>
-              Last login at: {firebaseUserData?.metadata?.lastSignInTime}
-            </div>
-          )}
-          {firebaseUserData?.uid && <div>Id: {firebaseUserData?.uid}</div>}
-          <AppButton type="button" label="Logout" onClick={handleLogout} />
-        </div>
+        <AppButton
+          type="button"
+          label="Logout"
+          onClick={handleLogout}
+          loading={loading}
+          disabled={loading}
+        />
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleAuth}>
           {isSignUp && (
@@ -149,12 +142,39 @@ export const Login = () => {
 
           {isSignUp && (
             <div>
-              <Label htmlFor="phone" value="Your phone number" />
+              <Label htmlFor="phoneNumber" value="Your mobile number" />
               <TextInput
-                id="phone"
+                id="phoneNumber"
                 type="number"
-                placeholder="Your phone number"
-                value={formData?.phone}
+                placeholder="Your mobile number"
+                value={formData?.phoneNumber}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
+
+          {isSignUp && (
+            <div>
+              <Label htmlFor="role" value="Select your role" />
+              <Select id="role" onChange={handleChange} required>
+                {Enums?.roles?.map((role) => (
+                  <option key={role?.value} value={role?.value}>
+                    {role?.label}
+                  </option>
+                ))}
+              </Select>
+            </div>
+          )}
+
+          {isSignUp && (
+            <div>
+              <Label htmlFor="photoURL" value="Your photo URL" />
+              <TextInput
+                id="photoURL"
+                type="text"
+                placeholder="Your photo URL"
+                value={formData?.photoURL}
                 onChange={handleChange}
                 required
               />
@@ -202,13 +222,18 @@ export const Login = () => {
           <AppButton
             type="submit"
             label={isSignUp ? "Signup" : "Login"}
+            loading={loading}
             disabled={
-              isSignUp && formData?.password !== formData?.confirmPassword
+              loading ||
+              (isSignUp && formData?.password !== formData?.confirmPassword)
             }
           />
           <div className="flex items-center gap-2">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
-            <div className="underline" onClick={() => setIsSignUp(!isSignUp)}>
+            <div
+              className="underline cursor-pointer"
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
               {isSignUp ? "Login" : "Signup"}
             </div>
           </div>

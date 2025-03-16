@@ -17,16 +17,17 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
   // Context
   const {
-    mainUserSandwichs,
-    setMainUserSandwichs,
-    usersData,
-    setUsersData,
-    unitPrice,
-    setUnitPrice,
-    firebaseDabaseIdName,
-    setFirebaseDabaseIdName,
     firebaseUserData,
     setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
 
@@ -39,7 +40,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          {data.map(({ label, path, icon }) => (
+          {data?.map(({ label, path, icon, role }) => (
             <Sidebar.Item
               key={path}
               as={Link}
@@ -47,7 +48,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
               icon={icon}
               active={location.pathname === path}
             >
-              {label}
+              {label} {role?.length === 1 && role?.includes(1) && "✨"}
             </Sidebar.Item>
           ))}
         </Sidebar.ItemGroup>
