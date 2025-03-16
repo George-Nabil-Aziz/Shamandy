@@ -40,7 +40,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          {data?.map(({ label, path, icon }) => (
+          {data?.map(({ label, path, icon, role }) => (
             <Sidebar.Item
               key={path}
               as={Link}
@@ -48,7 +48,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
               icon={icon}
               active={location.pathname === path}
             >
-              {label}
+              {label} {role?.length === 1 && role?.includes(1) && "✨"}
             </Sidebar.Item>
           ))}
         </Sidebar.ItemGroup>
