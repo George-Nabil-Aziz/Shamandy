@@ -72,7 +72,7 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("onAuthStateChanged");
+      // console.log("onAuthStateChanged");
       setFirebaseUserData(currentUser);
     });
 
