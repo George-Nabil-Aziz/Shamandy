@@ -97,8 +97,6 @@ export const MyOrderPage = () => {
 
   return (
     <div className="space-y-4">
-      <div onClick={() => console.log(formData)}>formData</div>
-      <div onClick={() => console.log(myOrder)}>myOrder</div>
       <div>
         <Label
           htmlFor="count"
