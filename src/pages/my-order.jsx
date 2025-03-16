@@ -76,7 +76,10 @@ export const MyOrderPage = () => {
         { merge: true }
       );
       handleGetAllItems();
+      handleGetUserFullData();
+      handleGetAllUsers();
       handleInitialValue();
+      setMyOrder([]);
       alert("Order added successfully!");
     } catch (error) {
       alert(error.message);
@@ -137,37 +140,48 @@ export const MyOrderPage = () => {
         </Select>
       </div>
 
-      <AppButton
-        label="Save"
-        icon="basil:save-outline"
-        className="cursor-pointer"
-        onClick={handleSaveOrder}
-        outline
-        loading={loading}
-        disabled={loading || !formData?.name || !formData?.count}
-      />
+      <hr />
 
-      {myOrder.length > 0 && (
-        <>
-          <hr />
+      {firebaseAllItems?.map((item) => (
+        <div key={item?.name} className="space-y-2 capitalize font-black">
+          <span>{item?.name}: </span>
+          <span
+            className={`${
+              +myOrder?.find((order) => order?.name === item?.name)?.count >=
+                0 && "line-through opacity-50"
+            }`}
+          >
+            {
+              firebaseFullUserData?.order?.find(
+                (order) => order?.name === item?.name
+              )?.count
+            }
+          </span>
+          {" ➡️ "}
+          {myOrder?.find((order) => order?.name === item?.name)?.count}
+        </div>
+      ))}
 
-          {firebaseAllItems?.map((item) => (
-            <div key={item?.name} className="space-y-2 capitalize font-black">
-              {item?.name} :{" "}
-              {myOrder?.find((order) => order?.name === item?.name)?.count}
-            </div>
-          ))}
+      <div className="flex gap-2">
+        <AppButton
+          label="Save"
+          icon="basil:save-outline"
+          className="cursor-pointer"
+          onClick={handleSaveOrder}
+          outline
+          loading={loading}
+          disabled={loading || !formData?.name || !formData?.count}
+        />
 
-          <AppButton
-            label="Update"
-            icon="material-symbols:sync-saved-locally-outline"
-            className="cursor-pointer"
-            onClick={handleUpdate}
-            loading={loading}
-            disabled={loading}
-          />
-        </>
-      )}
+        <AppButton
+          label="Finish"
+          icon="material-symbols:sync-saved-locally-outline"
+          className="cursor-pointer"
+          onClick={handleUpdate}
+          loading={loading}
+          disabled={loading || myOrder.length <= 0}
+        />
+      </div>
     </div>
   );
 };
