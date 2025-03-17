@@ -17,7 +17,6 @@ export const useNotify = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
 
     isToastVisible,
     setToastVisible,

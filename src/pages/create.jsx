@@ -31,7 +31,6 @@ export const Create = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hooks

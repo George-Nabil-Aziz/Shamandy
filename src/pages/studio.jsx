@@ -24,7 +24,6 @@ export const StudioPage = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
 
     isToastVisible,
     setToastVisible,

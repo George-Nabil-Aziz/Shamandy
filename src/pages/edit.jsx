@@ -29,7 +29,6 @@ export const Edit = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hooks

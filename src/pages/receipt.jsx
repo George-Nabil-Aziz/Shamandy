@@ -24,7 +24,6 @@ export const Receipt = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // State

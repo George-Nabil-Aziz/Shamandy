@@ -32,7 +32,6 @@ export const MyOrderPage = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hooks

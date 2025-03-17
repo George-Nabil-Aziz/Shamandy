@@ -33,7 +33,6 @@ export const Profile = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hooks

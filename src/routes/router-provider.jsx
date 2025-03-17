@@ -22,7 +22,6 @@ export const RouterProvider = ({ children }) => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   useEffect(() => {

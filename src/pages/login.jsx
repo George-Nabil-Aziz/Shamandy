@@ -3,7 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Core
-import { db, auth, Enums, AppButton, AppContext, useNotify } from "/src";
+import {
+  db,
+  auth,
+  Enums,
+  AppButton,
+  AppContext,
+  useNotify,
+  useAuthUtils,
+} from "/src";
 
 // Firebase
 import {
@@ -31,7 +39,6 @@ export const Login = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hooks
@@ -44,6 +51,7 @@ export const Login = () => {
 
   // Hooks
   const navigate = useNavigate();
+  const { handleLogout } = useAuthUtils();
 
   // Handle change values
   const handleChange = (e) =>

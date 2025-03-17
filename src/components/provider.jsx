@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth, db, AppToast } from "/src";
 
 // Firebase
-import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
 export const AppContext = createContext();
@@ -23,15 +23,6 @@ export const AppProvider = ({ children }) => {
 
   // State notifications
   const [isToastVisible, setToastVisible] = useState(false);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      alert("User logged out successfully.");
-    } catch (error) {
-      alert("Error logging out:", error.message);
-    }
-  };
 
   const handleGetAllUsers = async () => {
     const usersCollection = collection(db, "firebase-users");
@@ -96,7 +87,6 @@ export const AppProvider = ({ children }) => {
         firebaseAllItems,
         setFirebaseAllItems,
         handleGetAllItems,
-        handleLogout,
 
         isToastVisible,
         setToastVisible,
