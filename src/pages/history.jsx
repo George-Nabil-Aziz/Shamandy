@@ -31,7 +31,7 @@ export const History = () => {
       <p>14-03-2025: Adding admin, user Login</p>
       <p>15-03-2025: Firebase create, edit food functions</p>
       <p>16-03-2025: Firebase fix order</p>
-      <p>16-03-2024: End sprints/3 (Gaad)</p>
+      <p>16-03-2025: End sprints/3 (Gaad)</p>
 
       <hr />
       <h1 className="flex gap-2 items-center">
@@ -46,8 +46,9 @@ export const History = () => {
       <h2>-gh-pages (Github pages)</h2>
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
+      <h2>-✅useImmer</h2>
       <h2>-</h2>
-      <h2>-User can signin and put his preferd sandwiches</h2>
+      <h2>-✅User can signin and put his preferd sandwiches</h2>
       <h2>
         -User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches
