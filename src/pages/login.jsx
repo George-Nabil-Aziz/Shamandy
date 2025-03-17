@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Core
-import { Enums, AppButton, auth, AppContext, db } from "/src";
+import { db, auth, Enums, AppButton, AppContext, useNotify } from "/src";
 
 // Firebase
 import {
@@ -33,6 +33,9 @@ export const Login = () => {
     handleGetAllItems,
     handleLogout,
   } = useContext(AppContext);
+
+  // Hooks
+  const { notify } = useNotify();
 
   // State
   const [isSignUp, setIsSignUp] = useState(false);
@@ -67,7 +70,7 @@ export const Login = () => {
             merge: true,
           });
 
-          alert("Account created successfully!");
+          notify("Account created successfully!");
         } else {
           const userCredential = await signInWithEmailAndPassword(
             auth,
@@ -80,12 +83,12 @@ export const Login = () => {
             { email: formData?.email, password: formData?.password },
             { merge: true }
           );
-          alert("Logged in successfully!");
+          notify("Logged in successfully!");
         }
         setFormData({});
         navigate("/");
       } catch (error) {
-        alert(error.message);
+        notify.error(error.message);
       } finally {
         setLoading(false);
       }

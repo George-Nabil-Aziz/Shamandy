@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 
 // Core
-import { AppContext, AppButton, db } from "/src";
+import { db, AppContext, AppButton, useNotify } from "/src";
 
 // Firebase
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
@@ -32,6 +32,9 @@ export const Edit = () => {
     handleLogout,
   } = useContext(AppContext);
 
+  // Hooks
+  const { notify } = useNotify();
+
   // State
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
@@ -48,9 +51,9 @@ export const Edit = () => {
       );
       handleGetAllItems();
       handleInitialValue();
-      alert("Food deleted successfully!");
+      notify("Food deleted successfully!");
     } catch (error) {
-      alert(error.message);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -63,9 +66,9 @@ export const Edit = () => {
       await setDoc(doc(db, "firebase-items", String(formData?.id)), formData);
       handleGetAllItems();
       handleInitialValue();
-      alert("Food updated successfully!");
+      notify("Food updated successfully!");
     } catch (error) {
-      alert(error.message);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }

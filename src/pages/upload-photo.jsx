@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Core
-import { AppButton, storage } from "/src";
+import { storage, AppButton, useNotify } from "/src";
 
 // Firebase
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -11,6 +11,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Label, TextInput } from "flowbite-react";
 
 export const UploadPhoto = () => {
+  // Hooks
+  const { notify } = useNotify();
+
   // State
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
@@ -25,8 +28,7 @@ export const UploadPhoto = () => {
       const downloadURL = await getDownloadURL(imageRef);
       setUrl(downloadURL);
     } catch (error) {
-      alert(error.message);
-      console.log("Hello", error);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }
