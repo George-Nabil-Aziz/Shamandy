@@ -1,7 +1,35 @@
+// React
+import { useContext, useState } from "react";
+
+// Immer
 import { useImmer } from "use-immer";
-import { useState } from "react";
+
+// Core
+import { AppContext, useNotify } from "/src";
 
 export const StudioPage = () => {
+  // Hook
+  const { notify } = useNotify();
+
+  // Context
+  const {
+    firebaseUserData,
+    setFirebaseUserData,
+    firebaseFullUserData,
+    setFirebaseFullUserData,
+    handleGetUserFullData,
+    firebaseAllUsers,
+    setFirebaseAllUsers,
+    handleGetAllUsers,
+    firebaseAllItems,
+    setFirebaseAllItems,
+    handleGetAllItems,
+    handleLogout,
+
+    isToastVisible,
+    setToastVisible,
+  } = useContext(AppContext);
+
   const [immer, setImmer] = useImmer({
     name: "Sayed",
     age: 22,
@@ -55,6 +83,12 @@ export const StudioPage = () => {
         <div onClick={addState}>addState</div>
         <div>{JSON.stringify(state)}</div>
       </div>
+
+      <hr />
+
+      <div onClick={() => notify()}>Toats 1</div>
+      <div onClick={() => notify.warning()}>Toats 2</div>
+      <div onClick={() => notify.error()}>Toats 3</div>
     </>
   );
 };
