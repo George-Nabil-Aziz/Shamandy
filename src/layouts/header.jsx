@@ -49,7 +49,7 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
           className="hidden lg:block"
         />
         <Navbar.Brand as={Link} to="/">
-          <img src="/favicon.png" className="mr-3 h-6 sm:h-9" alt="Ta3mia" />
+          <img src="/medicine.png" className="mr-3 h-6 sm:h-9" alt="Medicine" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Eltabei™
           </span>
