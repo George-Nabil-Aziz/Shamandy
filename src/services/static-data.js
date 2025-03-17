@@ -28,7 +28,6 @@ export const StaticData = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // TODO: Static data

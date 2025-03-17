@@ -1,15 +1,10 @@
 // React
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 // Core
 import { AppContext } from "/src";
-import { useNavigate } from "react-router-dom";
 
-export const RouterProvider = ({ children }) => {
-  // Hooks
-  const navigate = useNavigate();
-
-  // Context
+export const useNotify = () => {
   const {
     firebaseUserData,
     setFirebaseUserData,
@@ -22,11 +17,14 @@ export const RouterProvider = ({ children }) => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
+
+    isToastVisible,
+    setToastVisible,
   } = useContext(AppContext);
 
-  useEffect(() => {
-    navigate("/");
-  }, [firebaseUserData, firebaseFullUserData]);
+  const notify = (message) => setToastVisible({ message, type: 1 });
+  notify.warning = (message) => setToastVisible({ message, type: 2 });
+  notify.error = (message) => setToastVisible({ message, type: 3 });
 
-  return children;
+  return { notify };
 };

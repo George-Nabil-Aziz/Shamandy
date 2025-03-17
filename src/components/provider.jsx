@@ -2,10 +2,10 @@
 import { createContext, useEffect, useState } from "react";
 
 // Core
-import { auth, db } from "/src";
+import { auth, db, AppToast } from "/src";
 
 // Firebase
-import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
 export const AppContext = createContext();
@@ -15,20 +15,14 @@ export const AppProvider = ({ children }) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  // State
-  const [firebaseUserData, setFirebaseUserData] = useState(auth);
+  // State Firebase
+  const [firebaseUserData, setFirebaseUserData] = useState(auth || {});
   const [firebaseFullUserData, setFirebaseFullUserData] = useState();
   const [firebaseAllUsers, setFirebaseAllUsers] = useState();
   const [firebaseAllItems, setFirebaseAllItems] = useState();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      alert("User logged out successfully.");
-    } catch (error) {
-      alert("Error logging out:", error.message);
-    }
-  };
+  // State notifications
+  const [isToastVisible, setToastVisible] = useState(false);
 
   const handleGetAllUsers = async () => {
     const usersCollection = collection(db, "firebase-users");
@@ -93,9 +87,19 @@ export const AppProvider = ({ children }) => {
         firebaseAllItems,
         setFirebaseAllItems,
         handleGetAllItems,
-        handleLogout,
+
+        isToastVisible,
+        setToastVisible,
       }}
     >
+      {/* Handle Notifications */}
+      {isToastVisible && (
+        <AppToast
+          isToastVisible={isToastVisible}
+          onClose={() => setToastVisible(false)}
+        />
+      )}
+
       {children}
     </AppContext.Provider>
   );

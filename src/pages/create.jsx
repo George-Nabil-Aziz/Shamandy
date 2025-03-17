@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 
 // Core
-import { AppContext, AppButton, db } from "/src";
+import { db, AppContext, AppButton, useNotify } from "/src";
 
 // Flowbite
 import { Label, TextInput } from "flowbite-react";
@@ -31,8 +31,10 @@ export const Create = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
+
+  // Hooks
+  const { notify } = useNotify();
 
   // State
   const [formData, setFormData] = useState({});
@@ -52,9 +54,9 @@ export const Create = () => {
       });
       setFormData({ name: "", price: "" });
       handleGetAllItems();
-      alert("Food added successfully!");
+      notify("Food added successfully!");
     } catch (error) {
-      alert(error.message);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }

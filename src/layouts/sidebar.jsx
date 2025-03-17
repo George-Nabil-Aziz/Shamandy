@@ -28,7 +28,6 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   return (

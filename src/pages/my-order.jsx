@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { TextInput, Label, Select } from "flowbite-react";
 
 // Core
-import { AppContext, AppButton, auth, db } from "/src";
+import { db, auth, AppContext, AppButton, useNotify } from "/src";
 
 // Firebase
 import { getAuth } from "firebase/auth";
@@ -32,8 +32,10 @@ export const MyOrderPage = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
+
+  // Hooks
+  const { notify } = useNotify();
 
   // State
   const [formData, setFormData] = useState({});
@@ -68,9 +70,9 @@ export const MyOrderPage = () => {
       handleGetAllUsers();
       handleInitialValue();
       setMyOrder([]);
-      alert("Order added successfully!");
+      notify("Order added successfully!");
     } catch (error) {
-      alert(error.message);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }

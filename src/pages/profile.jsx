@@ -2,7 +2,15 @@
 import { useContext, useEffect, useState } from "react";
 
 // Core
-import { AppButton, Enums, EnumText, auth, AppContext, db } from "/src";
+import {
+  db,
+  auth,
+  AppButton,
+  Enums,
+  EnumText,
+  AppContext,
+  useNotify,
+} from "/src";
 
 // Firebase
 import { updateProfile, getAuth } from "firebase/auth";
@@ -25,8 +33,10 @@ export const Profile = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
+
+  // Hooks
+  const { notify } = useNotify();
 
   // State
   const [isEditMode, setEditMode] = useState(false);
@@ -57,10 +67,10 @@ export const Profile = () => {
         merge: true,
       });
       handleGetUserFullData();
-      alert("Account updated successfully!");
+      notify("Account updated successfully!");
       setEditMode(false);
     } catch (error) {
-      alert(error.message);
+      notify.error(error.message);
     } finally {
       setLoading(false);
     }

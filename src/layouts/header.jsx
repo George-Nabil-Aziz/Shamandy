@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // Core
-import { AppButton, StaticData, AppContext } from "/src";
+import { AppButton, StaticData, AppContext, useAuthUtils } from "/src";
 
 // Flowbite
 import { DarkThemeToggle, Avatar, Dropdown, Navbar } from "flowbite-react";
@@ -25,12 +25,12 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-    handleLogout,
   } = useContext(AppContext);
 
   // Hook
   const location = useLocation();
   const navigate = useNavigate();
+  const { handleLogout } = useAuthUtils();
 
   return (
     <Navbar
