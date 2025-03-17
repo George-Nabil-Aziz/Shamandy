@@ -10,8 +10,8 @@ export const AppFooter = () => {
       container
       className="fixed right-0 bottom-0 left-0 border-t flex justify-between items-center p-3 sm:p-6 z-10"
     >
-      <Footer.Brand src="/favicon.png" alt="Ta3mia" />
-      <Footer.Copyright by="Gad™" year={2025} />
+      <Footer.Brand src="/medicine.png" alt="Medicine" />
+      <Footer.Copyright by="Eltabei™" year={2025} />
       <Footer.LinkGroup className="hidden sm:flex">
         <Footer.Link as={Link} href="/">
           About
