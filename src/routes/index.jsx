@@ -88,7 +88,7 @@ export const routes = [
           return {
             bcLabel: "History",
             bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Gad order",
+            jtTitle: "Here you can reserve your Eltabei order",
             jtIcon: GiSandwich,
           };
         },
