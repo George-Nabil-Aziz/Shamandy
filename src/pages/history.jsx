@@ -32,6 +32,8 @@ export const History = () => {
       <p>15-03-2025: Firebase create, edit food functions</p>
       <p>16-03-2025: Firebase fix order</p>
       <p>16-03-2025: End sprints/3 (Gaad)</p>
+      <p>17-03-2025: Notify hook</p>
+      <p>17-03-2025: Auth Utils hook - Logout</p>
 
       <hr />
       <h1 className="flex gap-2 items-center">
@@ -44,7 +46,7 @@ export const History = () => {
         column
       </h2>
       <h2>-gh-pages (Github pages)</h2>
-      <h2>-Notify</h2>
+      <h2>-✅Notify</h2>
       <h2>-Confirm dialog</h2>
       <h2>-✅useImmer</h2>
       <h2>-</h2>
