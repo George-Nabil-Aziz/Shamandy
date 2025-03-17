@@ -46,8 +46,9 @@ export const History = () => {
       <h2>-gh-pages (Github pages)</h2>
       <h2>-Notify</h2>
       <h2>-Confirm dialog</h2>
+      <h2>-✅useImmer</h2>
       <h2>-</h2>
-      <h2>-User can signin and put his preferd sandwiches</h2>
+      <h2>-✅User can signin and put his preferd sandwiches</h2>
       <h2>
         -User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches
