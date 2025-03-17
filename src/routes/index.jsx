@@ -13,11 +13,12 @@ import {
 import { RiEdit2Fill } from "react-icons/ri";
 import { FiLogIn } from "react-icons/fi";
 import { FaUserMd, FaImage } from "react-icons/fa";
-import { FaUserGear, FaUserSecret } from "react-icons/fa6";
+import { FaUserGear, FaUserSecret, FaBookAtlas } from "react-icons/fa6";
 import { MdMonochromePhotos } from "react-icons/md";
 import { MdOutlineReceipt } from "react-icons/md";
 import { TfiReceipt } from "react-icons/tfi";
 import { ImUsers } from "react-icons/im";
+import { IoBook } from "react-icons/io5";
 
 // Components
 import { Error404Page } from "../pages/404";
@@ -33,6 +34,7 @@ import { Login } from "../pages/login";
 import { Profile } from "../pages/profile";
 import { Users } from "../pages/users";
 import { UploadPhoto } from "../pages/upload-photo";
+import { StudioPage } from "../pages/studio";
 
 export const routes = [
   {
@@ -152,7 +154,7 @@ export const routes = [
         },
       },
       {
-        path: "Upload-photo",
+        path: "upload-photo",
         element: <UploadPhoto />,
         loader() {
           return {
@@ -160,6 +162,18 @@ export const routes = [
             bcIcon: FaImage,
             jtTitle: "Here you can Upload photo",
             jtIcon: MdMonochromePhotos,
+          };
+        },
+      },
+      {
+        path: "studio",
+        element: <StudioPage />,
+        loader() {
+          return {
+            bcLabel: "Studio",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study",
+            jtIcon: FaBookAtlas,
           };
         },
       },
