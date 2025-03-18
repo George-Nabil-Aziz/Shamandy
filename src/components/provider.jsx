@@ -2,7 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 
 // Core
-import { auth, db, AppToast } from "/src";
+import { auth, db, AppToast, ConfirmDialog } from "/src";
 
 // Firebase
 import { onAuthStateChanged, getAuth } from "firebase/auth";
@@ -23,6 +23,7 @@ export const AppProvider = ({ children }) => {
 
   // State notifications
   const [isToastVisible, setToastVisible] = useState(false);
+  const [isConfirmDialogVisible, setConfirmDialogVisible] = useState(false);
 
   const handleGetAllUsers = async () => {
     const usersCollection = collection(db, "firebase-users");
@@ -90,6 +91,8 @@ export const AppProvider = ({ children }) => {
 
         isToastVisible,
         setToastVisible,
+        isConfirmDialogVisible,
+        setConfirmDialogVisible,
       }}
     >
       {/* Handle Notifications */}
@@ -97,6 +100,14 @@ export const AppProvider = ({ children }) => {
         <AppToast
           isToastVisible={isToastVisible}
           onClose={() => setToastVisible(false)}
+        />
+      )}
+
+      {/* Confirm Dialog */}
+      {isConfirmDialogVisible && (
+        <ConfirmDialog
+          isConfirmDialogVisible={isConfirmDialogVisible}
+          onClose={() => setConfirmDialogVisible(false)}
         />
       )}
 

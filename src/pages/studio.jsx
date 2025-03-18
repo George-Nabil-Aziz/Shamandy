@@ -70,7 +70,13 @@ export const StudioPage = () => {
 
   return (
     <>
-      <div onClick={() => setConfirmDialogVisible((prev) => !prev)}>
+      <div
+        onClick={() =>
+          setConfirmDialogVisible((prev) => ({
+            onSucess: () => console.log("Hello"),
+          }))
+        }
+      >
         setConfirmDialogVisible
       </div>
 
