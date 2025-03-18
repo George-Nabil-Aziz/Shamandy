@@ -39,10 +39,12 @@ export const Login = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
-  } = useContext(AppContext);
 
-  // Hooks
-  const { notify } = useNotify();
+    isToastVisible,
+    setToastVisible,
+    isConfirmDialogVisible,
+    setConfirmDialogVisible,
+  } = useContext(AppContext);
 
   // State
   const [isSignUp, setIsSignUp] = useState(false);
@@ -51,7 +53,8 @@ export const Login = () => {
 
   // Hooks
   const navigate = useNavigate();
-  const { handleLogout } = useAuthUtils();
+  const { handleLogout, handleDeleteUser } = useAuthUtils();
+  const { notify } = useNotify();
 
   // Handle change values
   const handleChange = (e) =>
@@ -107,6 +110,14 @@ export const Login = () => {
     setFormData({ ...formData, role: 2 });
   };
 
+  const handleConfirmDeleteUser = () => {
+    setConfirmDialogVisible({
+      label: "Are you sure to delete?",
+      onSucess: handleDeleteUser,
+      onConfrimLabel: "أثممخ",
+    });
+  };
+
   useEffect(() => {
     if (!firebaseUserData?.uid) {
       handleInitialValue();
@@ -116,13 +127,23 @@ export const Login = () => {
   return (
     <Card className="max-w-md overflow-hidden">
       {firebaseUserData?.uid ? (
-        <AppButton
-          type="button"
-          label="Logout"
-          onClick={handleLogout}
-          loading={loading}
-          disabled={loading}
-        />
+        <div className="flex gap-2">
+          <AppButton
+            type="button"
+            label="Logout"
+            onClick={handleLogout}
+            loading={loading}
+            disabled={loading}
+            outline
+          />
+          <AppButton
+            type="button"
+            label="Delete User"
+            onClick={handleConfirmDeleteUser}
+            loading={loading}
+            disabled={loading}
+          />
+        </div>
       ) : (
         <form className="flex flex-col gap-4" onSubmit={handleAuth}>
           {isSignUp && (
