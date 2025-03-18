@@ -27,6 +27,8 @@ export const StudioPage = () => {
 
     isToastVisible,
     setToastVisible,
+    isConfirmDialogVisible,
+    setConfirmDialogVisible,
   } = useContext(AppContext);
 
   const [immer, setImmer] = useImmer({
@@ -68,6 +70,10 @@ export const StudioPage = () => {
 
   return (
     <>
+      <div onClick={() => setConfirmDialogVisible((prev) => !prev)}>
+        setConfirmDialogVisible
+      </div>
+
       <div className="bg-cyan-900 text-red-700 dark:text-cyan-400">
         <div onClick={updateImmer}>updateImmer</div>
         <div onClick={deleteImmer}>deleteImmer</div>
