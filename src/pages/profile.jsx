@@ -124,7 +124,7 @@ export const Profile = () => {
                 <option
                   key={role?.value}
                   value={role?.value}
-                  selected={+formData?.role === role.value}
+                  defaultValue={+formData?.role === role.value}
                 >
                   {role?.label}
                 </option>

@@ -129,7 +129,7 @@ export const MyOrderPage = () => {
             <option
               key={item?.id}
               value={item?.name}
-              selected={formData?.name === item?.name}
+              defaultValue={formData?.name === item?.name}
             >
               {item?.name}
             </option>
