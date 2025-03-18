@@ -11,6 +11,7 @@ import { Button } from "flowbite-react";
 import { ImSpinner9 } from "react-icons/im";
 
 export const AppButton = ({
+  children,
   label,
   icon,
   path,
@@ -43,6 +44,7 @@ export const AppButton = ({
       >
         <div>{label}</div>
         {icon && <Icon icon={icon} className={!!label && "ml-2"} width={18} />}
+        {children}
       </Button>
     </div>
   );
