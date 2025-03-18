@@ -5,3 +5,4 @@ export * from "./button";
 export * from "./provider";
 export * from "./enum-text";
 export * from "./toast";
+export * from "./confirm-dialog";

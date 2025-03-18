@@ -1,10 +1,14 @@
 // Core
-import { auth, useNotify } from "/src";
+import { auth, db, useNotify } from "/src";
 
 // Firebase
-import { signOut } from "firebase/auth";
+import { signOut, deleteUser } from "firebase/auth";
+import { deleteDoc, doc } from "firebase/firestore";
 
 export const useAuthUtils = () => {
+  // Constant
+  const user = auth.currentUser;
+
   // Hooks
   const { notify } = useNotify();
 
@@ -17,5 +21,16 @@ export const useAuthUtils = () => {
     }
   };
 
-  return { handleLogout };
+  const handleDeleteUser = async () => {
+    try {
+      await deleteUser(user);
+      await deleteDoc(doc(db, "firebase-users", user?.uid));
+      notify("User deleted successfully");
+    } catch (error) {
+      console.log(error);
+      notify.error("Error deleting user or their data:", error);
+    }
+  };
+
+  return { handleLogout, handleDeleteUser };
 };
