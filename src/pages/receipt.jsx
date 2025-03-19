@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 
 // Core
-import { AppButton, AppContext, db } from "/src";
+import { db, AppButton, AppContext, useNotify } from "/src";
 
 // Flowbite
 import { TextInput, Table } from "flowbite-react";
@@ -25,6 +25,9 @@ export const Receipt = () => {
     setFirebaseAllItems,
     handleGetAllItems,
   } = useContext(AppContext);
+
+  // Hooks
+  const { notify } = useNotify();
 
   // State
   const [loading, setLoading] = useState(false);
@@ -53,6 +56,7 @@ export const Receipt = () => {
     try {
       setLoading(true);
       await handleGetAllUsers();
+      notify("Checked!");
     } finally {
       setLoading(false);
     }
