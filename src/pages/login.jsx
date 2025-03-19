@@ -112,9 +112,10 @@ export const Login = () => {
 
   const handleConfirmDeleteUser = () => {
     setConfirmDialogVisible({
-      label: "Are you sure to delete?",
+      label: "Are you sure you want to delete this user?",
       onSucess: handleDeleteUser,
-      onConfrimLabel: "أثممخ",
+      onConfrimLabel: "Confrim",
+      onCancelLabel: "Cancel",
     });
   };
 
