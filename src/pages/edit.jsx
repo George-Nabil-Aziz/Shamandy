@@ -41,6 +41,7 @@ export const Edit = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
+  // FIXME: Delete is not working
   const handleDelete = async () => {
     try {
       setLoading(true);
@@ -99,7 +100,7 @@ export const Edit = () => {
               onChange={(e) => {
                 handleChange(e);
                 setFormData({
-                  ...formData,
+                  // ...formData,
                   id: firebaseAllItems?.find(
                     (item) => e.target.value === item?.id
                   )?.id,
