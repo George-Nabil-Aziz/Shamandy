@@ -48,14 +48,25 @@ export const History = () => {
       </h2>
       <h2>-gh-pages (Github pages)</h2>
       <h2>-✅Notify</h2>
-      <h2>-Confirm dialog</h2>
+      <h2>-✅Confirm dialog</h2>
       <h2>-✅useImmer</h2>
-      <h2>-</h2>
       <h2>-✅User can signin and put his preferd sandwiches</h2>
+      <h2>-Add Button "Show All Users" and get all users</h2>
+      <h2>-Add Search input to serach for specific user</h2>
       <h2>-Search for all users, add them to select, choose the user</h2>
+      <h2>-Add debounce 1000ms before search</h2>
+      <h2>-</h2>
       <h2>
         -User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches
+      </h2>
+
+      <h2>
+        -Add organizations:
+        <p className="font-black">=Super-admin and Admins</p>
+        <p>* 2 Shikolay</p>
+        <p>* 51 Elamir</p>
+        <p>* Madinet Nasr</p>
       </h2>
 
       <hr />
