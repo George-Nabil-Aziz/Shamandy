@@ -12,7 +12,7 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import { FaHistory, FaEdit, FaSignInAlt, FaUserCircle } from "react-icons/fa";
 import { BsImage } from "react-icons/bs";
 import { IoReceiptSharp } from "react-icons/io5";
-import { FaUsers, FaBook } from "react-icons/fa6";
+import { FaUsers, FaBook, FaBookBookmark } from "react-icons/fa6";
 
 export const StaticData = () => {
   // Context
@@ -94,6 +94,12 @@ export const StaticData = () => {
       path: "/studio",
       label: "Studio",
       icon: FaBook,
+      role: [3],
+    },
+    {
+      path: "/studio-two",
+      label: "Studio Two",
+      icon: FaBookBookmark,
       role: [3],
     },
   ].filter((singleData) => {
