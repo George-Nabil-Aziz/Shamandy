@@ -25,7 +25,7 @@ export const MainLayout = () => {
 
   return (
     <div
-      className={`pt-16 pb-24 ${
+      className={`${
         isSidebarVisibile ? "pl-64" : "pl-0"
       } bg-backgroundColor dark:bg-darkBackgroundColor transition-all h-screen overflow-y-auto`}
     >
@@ -39,7 +39,7 @@ export const MainLayout = () => {
         setSidebarVisibility={setSidebarVisibility}
       />
 
-      <div className="pt-4 px-4 space-y-4">
+      <div className="pt-20 pb-24 px-4 space-y-4">
         <AppBreadcrumb />
 
         <Jumbotron />

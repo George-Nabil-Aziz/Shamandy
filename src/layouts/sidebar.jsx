@@ -33,11 +33,11 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
   return (
     <Sidebar
       aria-label="Sidebar with logo branding example"
-      className={`fixed top-0 left-0 mt-14 ${
+      className={`fixed left-0 ${
         !isSidebarVisibile && "-translate-x-full"
       } transition-all`}
     >
-      <Sidebar.Items>
+      <Sidebar.Items className="mb-20">
         <Sidebar.ItemGroup>
           {data?.map(({ label, path, icon, role }) => (
             <Sidebar.Item
