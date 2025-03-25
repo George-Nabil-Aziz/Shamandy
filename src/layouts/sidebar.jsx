@@ -47,7 +47,16 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
               icon={icon}
               active={location.pathname === path}
             >
-              {label} {role?.length === 1 && role?.includes(1) && "✨"}
+              {label}{" "}
+              {role?.includes(2) &&
+                !role?.includes(0) &&
+                !role?.includes(1) &&
+                "✨"}{" "}
+              {role?.includes(3) &&
+                !role?.includes(0) &&
+                !role?.includes(1) &&
+                !role?.includes(2) &&
+                "💎ᴠɪᴘ"}
             </Sidebar.Item>
           ))}
         </Sidebar.ItemGroup>
@@ -55,3 +64,10 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
     </Sidebar>
   );
 };
+
+/*
+  0: Guest
+  1: User
+  2: Admin
+  3: Super Admin
+*/

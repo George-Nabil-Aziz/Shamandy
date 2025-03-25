@@ -35,6 +35,7 @@ import { Profile } from "../pages/profile";
 import { Users } from "../pages/users";
 import { UploadPhoto } from "../pages/upload-photo";
 import { StudioPage } from "../pages/studio";
+import { StudioTwoPage } from "../pages/studio-two";
 
 export const routes = [
   {
@@ -78,18 +79,6 @@ export const routes = [
             bcIcon: BsBackpack2,
             jtTitle: "Here you can't pay to sayed 2 pounds for torshy",
             jtIcon: GiTurtle,
-          };
-        },
-      },
-      {
-        path: "history",
-        element: <History />,
-        loader() {
-          return {
-            bcLabel: "History",
-            bcIcon: CiDeliveryTruck,
-            jtTitle: "Here you can reserve your Eltabei order",
-            jtIcon: GiSandwich,
           };
         },
       },
@@ -154,6 +143,18 @@ export const routes = [
         },
       },
       {
+        path: "history",
+        element: <History />,
+        loader() {
+          return {
+            bcLabel: "History",
+            bcIcon: CiDeliveryTruck,
+            jtTitle: "Here you can reserve your Eltabei order",
+            jtIcon: GiSandwich,
+          };
+        },
+      },
+      {
         path: "upload-photo",
         element: <UploadPhoto />,
         loader() {
@@ -173,6 +174,18 @@ export const routes = [
             bcLabel: "Studio",
             bcIcon: IoBook,
             jtTitle: "Here you can study",
+            jtIcon: FaBookAtlas,
+          };
+        },
+      },
+      {
+        path: "studio-two",
+        element: <StudioTwoPage />,
+        loader() {
+          return {
+            bcLabel: "Studio Two",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study two",
             jtIcon: FaBookAtlas,
           };
         },
