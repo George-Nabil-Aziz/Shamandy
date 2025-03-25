@@ -37,7 +37,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
         !isSidebarVisibile && "-translate-x-full"
       } transition-all`}
     >
-      <Sidebar.Items className="mb-20">
+      <Sidebar.Items className="mt-14 mb-20">
         <Sidebar.ItemGroup>
           {data?.map(({ label, path, icon, role }) => (
             <Sidebar.Item
