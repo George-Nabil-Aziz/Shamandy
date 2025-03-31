@@ -36,6 +36,8 @@ import { Users } from "../pages/users";
 import { UploadPhoto } from "../pages/upload-photo";
 import { StudioPage } from "../pages/studio";
 import { StudioTwoPage } from "../pages/studio-two";
+import { StudioThreePage } from "../pages/studio-three";
+import { StudioFourePage } from "../pages/studio-four";
 
 export const routes = [
   {
@@ -186,6 +188,30 @@ export const routes = [
             bcLabel: "Studio Two",
             bcIcon: IoBook,
             jtTitle: "Here you can study two",
+            jtIcon: FaBookAtlas,
+          };
+        },
+      },
+      {
+        path: "studio-three",
+        element: <StudioThreePage />,
+        loader() {
+          return {
+            bcLabel: "Studio Three",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study three",
+            jtIcon: FaBookAtlas,
+          };
+        },
+      },
+      {
+        path: "studio-four",
+        element: <StudioFourePage />,
+        loader() {
+          return {
+            bcLabel: "Studio Four",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study four",
             jtIcon: FaBookAtlas,
           };
         },
