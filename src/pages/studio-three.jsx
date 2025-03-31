@@ -1,6 +1,12 @@
 // Core
-import { withBorder } from "/src";
+import { withAuth } from "/src";
 
-export const StudioThreePage = withBorder(({ className }) => {
-  return <div className={className}>Helloooo</div>;
+export const StudioThreePage = withAuth(({ toggleAuthentication }) => {
+  return (
+    <div>
+      <p className="text-xl text-cyan-900 font-black">Welcome to dashboard</p>
+
+      <button onClick={toggleAuthentication}>Logout</button>
+    </div>
+  );
 });

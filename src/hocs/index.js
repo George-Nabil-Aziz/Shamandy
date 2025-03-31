@@ -1,3 +1,3 @@
 export * from "./field";
-export * from "./withBorder";
+export * from "./withLoadingAndStatus";
 export * from "./withAuth";

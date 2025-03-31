@@ -1,12 +1,4 @@
 // Core
-import { withAuth } from "/src";
+import { asField } from "/src";
 
-export const StudioFourePage = withAuth(({ toggleAuthentication }) => {
-  return (
-    <div>
-      <p>Welcome to dashboard</p>
-
-      <button onClick={toggleAuthentication}>Logout</button>
-    </div>
-  );
-});
+export const StudioFourPage = asField(() => <div>Studio Four Page</div>);
