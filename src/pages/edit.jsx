@@ -97,6 +97,7 @@ export const Edit = () => {
             <Select
               id="id"
               className="capitalize-select"
+              value={formData?.name}
               onChange={(e) => {
                 handleChange(e);
                 setFormData({
