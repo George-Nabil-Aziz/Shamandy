@@ -35,6 +35,7 @@ export const History = () => {
       <p>17-03-2025: Notify hook</p>
       <p>17-03-2025: Auth Utils hook - Logout</p>
       <p>19-03-2025: Oppo Reno F13 4G (Mother's Day)</p>
+      <p>13-04-2025: Edit table</p>
 
       <hr />
       <h1 className="flex gap-2 items-center">
@@ -57,7 +58,7 @@ export const History = () => {
       <h2>-Add debounce 1000ms before search</h2>
       <h2>-</h2>
       <h2>
-        -User elly rai7 yeshtery can open table and put all the preferd other
+        -✅User elly rai7 yeshtery can open table and put all the preferd other
         users sandwiches
       </h2>
 
