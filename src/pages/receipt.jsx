@@ -67,24 +67,21 @@ export const Receipt = () => {
   };
 
   const handleEditSaveTable = async () => {
-    if (editTable) {
-      try {
-        for (const user of firebaseAllUsers) {
-          await setDoc(
-            doc(db, "firebase-users", user.id),
-            ...editTable.filter(
-              (singleEditTable) => singleEditTable.id === user.id
-            ),
-            { merge: true }
-          );
-        }
-        handleGetAllUsers();
-        notify("Orders saved successfully!");
-      } catch (error) {
-        notify.error(error.message);
+    try {
+      for (const user of firebaseAllUsers) {
+        await setDoc(
+          doc(db, "firebase-users", user.id),
+          ...editTable.filter(
+            (singleEditTable) => singleEditTable.id === user.id
+          ),
+          { merge: true }
+        );
       }
+      handleGetAllUsers();
+      notify("Orders saved successfully!");
+    } catch (error) {
+      notify.error(error.message);
     }
-    setEditTable((draft) => (draft ? null : firebaseAllUsers));
   };
 
   return (
@@ -195,14 +192,28 @@ export const Receipt = () => {
           loading={loading}
           disabled={loading}
         />
+        {editTable && (
+          <AppButton
+            label="Save"
+            icon="basil:save-outline"
+            className="cursor-pointer"
+            onClick={handleEditSaveTable}
+            loading={loading}
+            disabled={loading}
+          />
+        )}
 
         <AppButton
-          label={editTable ? "Save" : "Edit"}
+          label={editTable ? "Cancel" : "Edit"}
           icon={
-            editTable ? "basil:save-outline" : "material-symbols:edit-outline"
+            editTable
+              ? "material-symbols:cancel-outline-rounded"
+              : "material-symbols:edit-outline"
           }
           className="cursor-pointer"
-          onClick={handleEditSaveTable}
+          onClick={() =>
+            setEditTable((draft) => (draft ? null : firebaseAllUsers))
+          }
           loading={loading}
           disabled={loading}
           outline
