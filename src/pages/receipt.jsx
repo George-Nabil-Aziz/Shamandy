@@ -1,6 +1,9 @@
 // React
 import { useContext, useEffect, useState } from "react";
 
+// Immer
+import { useImmer } from "use-immer";
+
 // Core
 import { db, AppButton, AppContext, useNotify } from "/src";
 
@@ -31,11 +34,12 @@ export const Receipt = () => {
 
   // State
   const [loading, setLoading] = useState(false);
+  const [editTable, setEditTable] = useImmer(firebaseAllUsers);
 
   // Methods
   const handleAllOfKind = (item) => {
     let resultAllOfKind = 0;
-    firebaseAllUsers?.map(
+    (editTable ? editTable : firebaseAllUsers)?.map(
       (user) =>
         (resultAllOfKind +=
           +user?.order?.find((singleOrder) => singleOrder?.name === item?.name)
@@ -62,6 +66,27 @@ export const Receipt = () => {
     }
   };
 
+  const handleEditSaveTable = async () => {
+    if (editTable) {
+      try {
+        for (const user of firebaseAllUsers) {
+          await setDoc(
+            doc(db, "firebase-users", user.id),
+            ...editTable.filter(
+              (singleEditTable) => singleEditTable.id === user.id
+            ),
+            { merge: true }
+          );
+        }
+        handleGetAllUsers();
+        notify("Orders saved successfully!");
+      } catch (error) {
+        notify.error(error.message);
+      }
+    }
+    setEditTable((draft) => (draft ? null : firebaseAllUsers));
+  };
+
   return (
     <div className="overflow-x-auto space-y-2">
       <Table striped hoverable>
@@ -73,7 +98,7 @@ export const Receipt = () => {
         </Table.Head>
 
         <Table.Body className="divide-y">
-          {firebaseAllUsers?.map((user) => (
+          {(editTable ? editTable : firebaseAllUsers)?.map((user) => (
             <Table.Row
               className="bg-white dark:border-gray-700 dark:bg-gray-800"
               key={user?.id}
@@ -84,18 +109,45 @@ export const Receipt = () => {
 
               {firebaseAllItems?.map((item) => (
                 <Table.Cell key={item?.id} className="capitalize">
-                  <TextInput
-                    type="number"
-                    min={0}
-                    sizing="sm"
-                    className="min-w-12 max-w-20"
-                    value={
-                      user?.order?.find(
+                  {editTable ? (
+                    <TextInput
+                      type="number"
+                      min={0}
+                      sizing="sm"
+                      className="min-w-12 max-w-20"
+                      value={
+                        user?.order?.find(
+                          (userOrder) => item?.name === userOrder?.name
+                        )?.count || 0
+                      }
+                      onChange={(e) =>
+                        setEditTable((draft) => {
+                          const selectedUser = draft.find(
+                            (userEditTable) => userEditTable.id === user.id
+                          );
+                          if (selectedUser) {
+                            const selectedFood = selectedUser?.order?.find(
+                              (userOrder) => userOrder.name === item.name
+                            );
+                            if (selectedFood) {
+                              selectedFood.count = +e.target.value;
+                            } else {
+                              selectedUser.order.push({
+                                name: item.name,
+                                count: +e.target.value,
+                              });
+                            }
+                          }
+                        })
+                      }
+                    />
+                  ) : (
+                    <div className="w-20">
+                      {user?.order?.find(
                         (userOrder) => item?.name === userOrder?.name
-                      )?.count || 0
-                    }
-                    onChange={() => {}}
-                  />
+                      )?.count || 0}
+                    </div>
+                  )}
                 </Table.Cell>
               ))}
             </Table.Row>
@@ -134,14 +186,28 @@ export const Receipt = () => {
         </Table.Body>
       </Table>
 
-      <AppButton
-        label="Check"
-        icon="material-symbols:sync-outline"
-        className="cursor-pointer"
-        onClick={handleCheck}
-        loading={loading}
-        disabled={loading}
-      />
+      <div className="flex gap-2 p-1">
+        <AppButton
+          label="Check"
+          icon="material-symbols:sync-outline"
+          className="cursor-pointer"
+          onClick={handleCheck}
+          loading={loading}
+          disabled={loading}
+        />
+
+        <AppButton
+          label={editTable ? "Save" : "Edit"}
+          icon={
+            editTable ? "basil:save-outline" : "material-symbols:edit-outline"
+          }
+          className="cursor-pointer"
+          onClick={handleEditSaveTable}
+          loading={loading}
+          disabled={loading}
+          outline
+        />
+      </div>
     </div>
   );
 };
