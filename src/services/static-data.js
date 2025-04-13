@@ -102,6 +102,18 @@ export const StaticData = () => {
       icon: FaBookBookmark,
       role: [3],
     },
+    {
+      path: "/studio-three",
+      label: "Studio Three",
+      icon: FaBookBookmark,
+      role: [3],
+    },
+    {
+      path: "/studio-four",
+      label: "Studio Four",
+      icon: FaBookBookmark,
+      role: [3],
+    },
   ].filter((singleData) => {
     if (firebaseUserData?.uid)
       return singleData?.role?.includes(+firebaseFullUserData?.role);

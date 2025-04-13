@@ -97,18 +97,19 @@ export const Edit = () => {
             <Select
               id="id"
               className="capitalize-select"
+              value={formData?.name}
               onChange={(e) => {
                 handleChange(e);
                 setFormData({
                   // ...formData,
                   id: firebaseAllItems?.find(
-                    (item) => e.target.value === item?.id
+                    (item) => e.target.value === item?.name
                   )?.id,
                   name: firebaseAllItems?.find(
-                    (item) => e.target.value === item?.id
+                    (item) => e.target.value === item?.name
                   )?.name,
                   price: firebaseAllItems?.find(
-                    (item) => e.target.value === item?.id
+                    (item) => e.target.value === item?.name
                   )?.price,
                 });
               }}

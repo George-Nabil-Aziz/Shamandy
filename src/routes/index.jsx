@@ -36,6 +36,8 @@ import { Users } from "../pages/users";
 import { UploadPhoto } from "../pages/upload-photo";
 import { StudioPage } from "../pages/studio";
 import { StudioTwoPage } from "../pages/studio-two";
+import { StudioThreePage } from "../pages/studio-three";
+import { StudioFourPage } from "../pages/studio-four";
 
 export const routes = [
   {
@@ -173,7 +175,7 @@ export const routes = [
           return {
             bcLabel: "Studio",
             bcIcon: IoBook,
-            jtTitle: "Here you can study",
+            jtTitle: "Here you can study: Confirm dialog, Notify, useImmer",
             jtIcon: FaBookAtlas,
           };
         },
@@ -185,7 +187,31 @@ export const routes = [
           return {
             bcLabel: "Studio Two",
             bcIcon: IoBook,
-            jtTitle: "Here you can study two",
+            jtTitle: "Here you can study: Simple HOC",
+            jtIcon: FaBookAtlas,
+          };
+        },
+      },
+      {
+        path: "studio-three",
+        element: <StudioThreePage />,
+        loader() {
+          return {
+            bcLabel: "Studio Three",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study three",
+            jtIcon: FaBookAtlas,
+          };
+        },
+      },
+      {
+        path: "studio-four",
+        element: <StudioFourPage />,
+        loader() {
+          return {
+            bcLabel: "Studio Four",
+            bcIcon: IoBook,
+            jtTitle: "Here you can study four",
             jtIcon: FaBookAtlas,
           };
         },
