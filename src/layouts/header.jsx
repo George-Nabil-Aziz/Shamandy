@@ -33,12 +33,9 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
   const { handleLogout } = useAuthUtils();
 
   return (
-    <Navbar
-      fluid
-      rounded
-      className="fixed top-0 right-0 left-0 z-[10] border-b"
-    >
+    <Navbar fluid rounded className="fixed top-0 right-0 left-0 z-40 border-b">
       <div className="flex justify-center items-center gap-3">
+        {/* Burger icon */}
         <AppButton
           icon={
             isSidebarVisibile
@@ -46,8 +43,9 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
               : "iconamoon:menu-burger-horizontal-fill"
           }
           onClick={() => setSidebarVisibility((prev) => !prev)}
-          className="hidden lg:block"
+          className="hidden md:block"
         />
+
         <Navbar.Brand as={Link} to="/">
           <img src="/medicine.png" className="mr-3 h-6 sm:h-9" alt="Medicine" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -108,9 +106,12 @@ export const AppHeader = ({ isSidebarVisibile, setSidebarVisibility }) => {
 
         <DarkThemeToggle />
 
+        {/* Toogle nav links */}
         <Navbar.Toggle className="!block md:!hidden" />
       </div>
-      <Navbar.Collapse className="lg:!hidden">
+
+      {/* nav links */}
+      <Navbar.Collapse className="md:!hidden overflow-auto max-h-[calc(100vh-69px-61px)]">
         {data?.map(({ label, path, icon }) => (
           <Navbar.Link
             key={path}

@@ -128,3 +128,13 @@ export const StaticData = () => {
   2: Admin
   3: Super Admin
 */
+
+/*
+  z-index
+
+  z-10 table
+  z-20 overlay
+  z-30 sidebar
+  z-40 header footer
+  z-50 toast
+*/
