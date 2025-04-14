@@ -33,7 +33,7 @@ export const AppSidebar = ({ isSidebarVisibile, setSidebarVisibility }) => {
   return (
     <Sidebar
       aria-label="Sidebar with logo branding example"
-      className={`fixed left-0 ${
+      className={`fixed left-0 z-30 ${
         !isSidebarVisibile && "-translate-x-full"
       } transition-all`}
     >

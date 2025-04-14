@@ -8,7 +8,7 @@ export const AppFooter = () => {
   return (
     <Footer
       container
-      className="fixed right-0 bottom-0 left-0 border-t flex justify-between items-center p-3 sm:p-6 z-10"
+      className="fixed right-0 bottom-0 left-0 border-t flex justify-between items-center p-3 sm:p-6 z-40"
     >
       <Footer.Brand src="/medicine.png" alt="Medicine" />
       <Footer.Copyright by="Eltabei™" year={2025} />

@@ -85,8 +85,8 @@ export const Receipt = () => {
   };
 
   return (
-    <div className="space-y-2">
-      <Table striped hoverable>
+    <div className="space-y-2 relative">
+      <Table striped hoverable className="overflow-x-hidden overflow-y-auto">
         <Table.Head className="sticky top-[60px] z-10">
           <Table.HeadCell>Name</Table.HeadCell>
           {firebaseAllItems?.map((item) => (

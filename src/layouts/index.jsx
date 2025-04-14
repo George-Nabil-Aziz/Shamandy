@@ -26,7 +26,7 @@ export const MainLayout = () => {
   return (
     <div
       className={`${
-        isSidebarVisibile ? "pl-64" : "pl-0"
+        isSidebarVisibile ? "lg:pl-64" : "pl-0"
       } bg-backgroundColor dark:bg-darkBackgroundColor transition-all h-screen overflow-y-auto`}
     >
       <AppHeader
@@ -39,15 +39,23 @@ export const MainLayout = () => {
         setSidebarVisibility={setSidebarVisibility}
       />
 
-      <div className="pt-20 pb-24 px-4 space-y-4">
+      <div className="pt-20 pb-24 px-2 sm:px-4 space-y-3">
         <AppBreadcrumb />
 
         <Jumbotron />
 
-        <div className="p-4 border-2 rounded-2xl text-textColor dark:text-darkTextColor">
+        <div className="p-2 sm:p-4 border-2 rounded-2xl text-textColor dark:text-darkTextColor">
           <Outlet />
         </div>
       </div>
+
+      {/* Overlay */}
+      {isSidebarVisibile && (
+        <div
+          className="lg:hidden fixed top-0 right-0 bottom-0 left-0 bg-black/50 z-20"
+          onClick={() => setSidebarVisibility(false)}
+        />
+      )}
 
       <AppFooter />
     </div>
