@@ -27,7 +27,7 @@ export const Users = () => {
       <hr />
 
       {firebaseAllUsers?.map((user) => (
-        <div>{user?.displayName}</div>
+        <div key={user?.id}>{user?.displayName}</div>
       ))}
     </div>
   );
