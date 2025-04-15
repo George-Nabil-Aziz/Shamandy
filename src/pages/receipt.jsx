@@ -27,6 +27,11 @@ export const Receipt = () => {
     firebaseAllItems,
     setFirebaseAllItems,
     handleGetAllItems,
+
+    isToastVisible,
+    setToastVisible,
+    isConfirmDialogVisible,
+    setConfirmDialogVisible,
   } = useContext(AppContext);
 
   // Hooks
@@ -34,7 +39,7 @@ export const Receipt = () => {
 
   // State
   const [loading, setLoading] = useState(false);
-  const [editTable, setEditTable] = useImmer(firebaseAllUsers);
+  const [editTable, setEditTable] = useImmer(null);
 
   // Methods
   const handleAllOfKind = (item) => {
@@ -57,16 +62,31 @@ export const Receipt = () => {
   };
 
   const handleCheck = async () => {
-    try {
-      setLoading(true);
-      await handleGetAllUsers();
-      notify("Checked!");
-    } finally {
-      setLoading(false);
+    const doHandleCheck = async () => {
+      try {
+        setLoading(true);
+        await handleGetAllUsers();
+        notify("Checked!");
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (editTable) {
+      setConfirmDialogVisible((prev) => ({
+        label:
+          "Are you sure you want to check ?, You will lose all your new data.",
+        onSucess: () => {
+          doHandleCheck();
+          setEditTable(null);
+        },
+      }));
+    } else {
+      doHandleCheck();
     }
   };
 
   const handleEditSaveTable = async () => {
+    setLoading(true);
     try {
       for (const user of firebaseAllUsers) {
         await setDoc(
@@ -81,6 +101,8 @@ export const Receipt = () => {
       notify("Orders saved successfully!");
     } catch (error) {
       notify.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
